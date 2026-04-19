@@ -1,0 +1,15 @@
+PORT=4000
+MONGODB_URI=mongodb+srv://flexxngire01_db_user:NIWAKATIEND@cluster0.tmvkzjz.mongodb.net/
+
+EMAIL_USER=flexxngire01@gmail.com
+ADMIN_EMAIL=flexxngire01@gmail.com
+EMAIL_PASS=wpctoarjwbvhxejg
+
+ADMIN_API_KEY=niwakati_admin_secret_123
+ADMIN_KEY=niwakati_admin_2026
+
+
+JWT_SECRET=ni_wakati_super_secret_key_2026
+ADMIN_PASSWORD_HASH=$2b$10$FmzZm7IoAlSQBTdi4OuvFeOUuWaCOzqjl3CHVT2e9qihdsPmhK7zC
+
+

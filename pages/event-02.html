@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Ni-Wakati | The Great Rift Trailblazer Run 2025</title>
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ========== RESET & BASE (preserved from original, tailored for event page) ========== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9f4eb;
+      color: #141414;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .heading-font {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ========== SIMPLE FIXED NAVBAR (exact same style) ========== */
+    .simple-navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 9999;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0.8rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-logo-img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+
+    .nav-logo-img:hover {
+      transform: scale(1.05);
+      border-color: #2c7a2c;
+    }
+
+    .nav-logo-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .nav-logo-text {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.5px;
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+
+    .nav-logo-text span {
+      color: #4caf50;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      display: inline-block;
+      padding: 0.6rem 1.2rem;
+      color: #f0f0f0;
+      font-weight: 500;
+      font-size: 1rem;
+      border-radius: 40px;
+      transition: all 0.25s;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      background: #2c7a2c;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-toggle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      background: rgba(20, 20, 20, 0.97);
+      backdrop-filter: blur(16px);
+      border-radius: 20px;
+      min-width: 220px;
+      padding: 0.7rem 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: all 0.25s ease;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 20px 35px rgba(0,0,0,0.3);
+      z-index: 100;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 0.7rem 1.8rem;
+      color: #e0e0e0;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      font-weight: 500;
+    }
+
+    .dropdown-menu a:hover {
+      background: #2c7a2c;
+      color: white;
+      padding-left: 2rem;
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.8rem;
+      color: white;
+    }
+
+    @media (max-width: 950px) {
+      .mobile-toggle { display: flex; }
+      .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 340px;
+        height: 100vh;
+        background: #0f0f0f;
+        backdrop-filter: blur(24px);
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 100px 1.5rem 2rem;
+        gap: 0.8rem;
+        transition: right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        border-left: 1px solid rgba(255,255,255,0.1);
+        overflow-y: auto;
+      }
+      .nav-menu.active { right: 0; }
+      .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        background: rgba(255,255,255,0.05);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+      .dropdown.active .dropdown-menu { max-height: 300px; }
+    }
+
+    /* ========== UNIQUE EVENT HERO (single event showcase) ========== */
+    .event-hero {
+      min-height: 85vh;
+      background: linear-gradient(125deg, rgba(0,0,0,0.85), rgba(0,0,0,0.7)), url('assets/img/event-bg.jpg');
+      background-size: cover;
+      background-position: center 30%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-top: 80px;
+      padding: 3rem 2rem;
+      position: relative;
+    }
+    /* fallback gradient if image missing */
+    .event-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 30%, rgba(44,122,44,0.2), transparent);
+      pointer-events: none;
+    }
+    .event-hero-content {
+      max-width: 1000px;
+      z-index: 2;
+    }
+    .event-badge {
+      background: #2c7a2c;
+      display: inline-block;
+      padding: 0.4rem 1.5rem;
+      border-radius: 40px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .event-hero h1 {
+      font-size: 5rem;
+      color: white;
+      text-shadow: 3px 3px 20px black;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+    .event-date-location {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin: 1.5rem 0;
+      font-weight: 500;
+      color: #e0e0e0;
+    }
+    .event-date-location i {
+      color: #4caf50;
+      margin-right: 8px;
+    }
+    .event-description {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 1.5rem auto;
+      color: #f5f5f5;
+    }
+    .event-cta-group {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .btn-primary-event {
+      background: #2c7a2c;
+      padding: 14px 38px;
+      border-radius: 60px;
+      font-weight: 700;
+      transition: 0.2s;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-primary-event:hover {
+      background: #1e5e1e;
+      transform: scale(1.02);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+    .btn-outline-event {
+      background: transparent;
+      border: 2px solid white;
+      padding: 14px 38px;
+      border-radius: 60px;
+      font-weight: 700;
+      color: white;
+      transition: 0.2s;
+    }
+    .btn-outline-event:hover {
+      background: white;
+      color: #1e5e1e;
+      border-color: white;
+    }
+
+    /* event details section */
+    .event-details-grid {
+      max-width: 1300px;
+      margin: 80px auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .detail-card {
+      background: white;
+      border-radius: 32px;
+      padding: 2rem;
+      box-shadow: 0 20px 35px rgba(0,0,0,0.05);
+      transition: transform 0.2s;
+      text-align: center;
+      border: 1px solid #e0e0e0;
+    }
+    .detail-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 40px rgba(44,122,44,0.1);
+    }
+    .detail-icon {
+      font-size: 2.8rem;
+      color: #2c7a2c;
+      margin-bottom: 1rem;
+    }
+    .detail-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 0.8rem;
+    }
+    .countdown-timer {
+      background: #0f2b0f;
+      border-radius: 60px;
+      padding: 0.8rem 1.8rem;
+      display: inline-flex;
+      gap: 1.2rem;
+      font-weight: 700;
+      font-family: monospace;
+      font-size: 1.4rem;
+      margin: 1rem 0;
+      color: #ffd966;
+    }
+    .countdown-timer span {
+      background: #00000066;
+      padding: 5px 12px;
+      border-radius: 40px;
+    }
+
+    /* image gallery / highlights */
+    .event-gallery {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 2rem;
+    }
+    .gallery-title {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #1e5e1e;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .gallery-item {
+      border-radius: 28px;
+      overflow: hidden;
+      height: 260px;
+      background-size: cover;
+      background-position: center;
+      transition: all 0.3s;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    .gallery-item:hover {
+      transform: scale(0.98);
+      filter: brightness(1.02);
+    }
+
+    /* registration section */
+    .register-section {
+      background: linear-gradient(110deg, #0e1a0e, #141414);
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+      margin-top: 60px;
+    }
+    .register-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .register-container h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .price-tag {
+      font-size: 2rem;
+      background: #2c7a2c;
+      display: inline-block;
+      padding: 0.3rem 1.5rem;
+      border-radius: 80px;
+      margin: 1rem 0;
+    }
+    .register-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .register-form input {
+      padding: 14px 20px;
+      border-radius: 60px;
+      border: none;
+      width: 260px;
+      font-size: 1rem;
+    }
+    .register-form button {
+      background: #4caf50;
+      border: none;
+      padding: 14px 35px;
+      font-weight: bold;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .register-form button:hover {
+      background: #2c7a2c;
+      transform: translateY(-3px);
+    }
+
+    /* Footer (preserved) */
+    .pact-footer {
+      background: #0a0a0a;
+      padding: 70px 20px 30px;
+      color: #ddd;
+      border-top: 1px solid #2c7a2c40;
+    }
+    .footer-container {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+    .footer-heading {
+      font-size: 1.5rem;
+      color: #4caf50;
+      margin-bottom: 20px;
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+    .footer-menu {
+      list-style: none;
+    }
+    .footer-menu li {
+      margin-bottom: 12px;
+    }
+    .footer-menu a {
+      color: #ccc;
+      transition: 0.2s;
+    }
+    .footer-menu a:hover {
+      color: #4caf50;
+    }
+    .social-links {
+      display: flex;
+      gap: 14px;
+      margin-top: 20px;
+    }
+    .social-link {
+      background: rgba(255,255,255,0.08);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      transition: 0.2s;
+    }
+    .social-link:hover {
+      background: #2c7a2c;
+      transform: translateY(-4px);
+    }
+    .footer-bottom {
+      border-top: 1px solid #222;
+      padding-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 850px) {
+      .footer-grid { grid-template-columns: repeat(2,1fr); }
+      .event-hero h1 { font-size: 3rem; }
+    }
+    @media (max-width: 550px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .event-hero h1 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========== SAME NAVBAR ========== -->
+<header class="simple-navbar" id="navbar">
+  <div class="nav-container">
+    <div class="nav-logo">
+      <div class="nav-logo-img">
+    <img src="../assets/img/logo.jpg" alt="Ni-Wakati Logo">
+      </div>
+      <div class="nav-logo-text">NI-<span>WAKATI</span></div>
+    </div>
+    <div class="mobile-toggle" id="mobileToggle">
+      <i class="bi bi-list"></i>
+    </div>
+    <ul class="nav-menu" id="navMenu">
+      <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+      <li class="nav-item dropdown">
+        <div class="nav-link dropdown-toggle">About <i class="bi bi-chevron-down"></i></div>
+        <ul class="dropdown-menu">
+          <li><a href="../about.html">Mission & Vision</a></li>
+        </ul>
+      </li>
+      <li class="nav-item"><a href="../Event.html" class="nav-link active">Events</a></li>
+      <li class="nav-item dropdown">
+        <div class="nav-link dropdown-toggle">Stories <i class="bi bi-chevron-down"></i></div>
+        <ul class="dropdown-menu">
+          <li><a href="insights.html#impact">Impact & Sustainability</a></li>
+        </ul>
+      </li>
+      <li class="nav-item"><a href="involved.html" class="nav-link">Get Involved</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- MAIN SINGLE EVENT PAGE -->
+<main>
+  <!-- Hero with upcoming special event -->
+  <section class="event-hero" style="background-image: linear-gradient(125deg, rgba(0,0,0,0.85), rgba(0,0,0,0.7)), url('assets/img/event_bg_hero.jpg'); background-size: cover;">
+    <div class="event-hero-content">
+      <div class="event-badge"><i class="bi bi-calendar-heart"></i> LIMITED SPOTS • PREMIER EVENT</div>
+      <h1>THE GREAT RIFT<br>TRAILBLAZER RUN 2025</h1>
+      <div class="event-date-location">
+        <span><i class="bi bi-calendar-event"></i> October 12, 2025</span>
+        <span><i class="bi bi-geo-alt-fill"></i> Hell's Gate National Park, Kenya</span>
+        <span><i class="bi bi-clock"></i> 7:00 AM EAT</span>
+      </div>
+      <p class="event-description">
+        Join the ultimate fusion of elite athletics, eco-tourism, and community empowerment. A 21km trail run & 5km family fun run through dramatic gorges, geothermal steam fields, and wildlife corridors — uniting athletes and changemakers across Africa.
+      </p>
+      <div class="event-cta-group">
+        <a href="#register" class="btn-primary-event"><i class="bi bi-ticket-perforated"></i> Reserve Your Spot</a>
+        <a href="#details" class="btn-outline-event"><i class="bi bi-arrow-down-circle"></i> Event Details</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key details cards + countdown -->
+  <div id="details"></div>
+  <div class="event-details-grid">
+    <div class="detail-card">
+      <div class="detail-icon"><i class="bi bi-trophy"></i></div>
+      <h3>Prizes & Recognition</h3>
+      <p>$10,000 prize purse + medals & official Trailblazer trophy. Cash awards for top 3 male/female and team category.</p>
+    </div>
+    <div class="detail-card">
+      <div class="detail-icon"><i class="bi bi-people"></i></div>
+      <h3>Community Impact</h3>
+      <p>50% of proceeds go toward youth sports infrastructure in Nakuru & Maasai Mara region. Build courts + training hubs.</p>
+    </div>
+    <div class="detail-card">
+      <div class="detail-icon"><i class="bi bi-cloud-sun"></i></div>
+      <h3>Eco Sports Tourism</h3>
+      <p>Explore geothermal cliffs & zebra plains. Post-race cultural festival with Maasai performances and local crafts.</p>
+    </div>
+    <div class="detail-card">
+      <div class="detail-icon"><i class="bi bi-stopwatch"></i></div>
+      <h3>Countdown to Race Day</h3>
+      <div class="countdown-timer" id="countdownDisplay">
+        <span>00d</span> <span>00h</span> <span>00m</span> <span>00s</span>
+      </div>
+      <p style="margin-top:10px;">Register early for discounted entry</p>
+    </div>
+  </div>
+
+  <!-- image gallery (showcasing the vibe) -->
+  <div class="event-gallery">
+    <h2 class="gallery-title">Trail Experience</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item" style="background-image: url('assets/img/1.jpg'); background-size: cover;"></div>
+      <div class="gallery-item" style="background-image: url('assets/img/6.jpg'); background-size: cover;"></div>
+      <div class="gallery-item" style="background-image: url('assets/img/gg.jpg'); background-size: cover;"></div>
+      <div class="gallery-item" style="background-image: url('assets/img/community\\ 2.webp'); background-size: cover;"></div>
+    </div>
+  </div>
+
+  <!-- special features: what makes this event unique -->
+  <section style="max-width: 1200px; margin: 40px auto; padding: 0 20px;">
+    <div style="background: #fef7e8; border-radius: 40px; padding: 2.5rem; text-align: center;">
+      <h2 style="font-size: 2.2rem; color: #2c7a2c;">✨ Why This Event is Unmissable</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; margin-top: 2rem;">
+        <div style="flex: 1; min-width: 200px;"><i class="bi bi-map" style="font-size: 2rem; color:#2c7a2c;"></i><p><strong>Scenic Rift Valley</strong><br>Run along dramatic cliffs, natural hot springs, and wildlife corridors.</p></div>
+        <div style="flex: 1; min-width: 200px;"><i class="bi bi-mic" style="font-size: 2rem; color:#2c7a2c;"></i><p><strong>Live DJ & Finish Festival</strong><br>Afrobeat & local cuisine, free massages, eco-market.</p></div>
+        <div style="flex: 1; min-width: 200px;"><i class="bi bi-graph-up" style="font-size: 2rem; color:#2c7a2c;"></i><p><strong>Global Athletics Kenya Sanctioned</strong><br>Qualifier for regional championships.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Registration section (lead capture) -->
+  <div id="register"></div>
+  <section class="register-section">
+    <div class="register-container">
+      <h2>Secure Your Starting Line Pass</h2>
+      <p>Early bird discounts close August 31st. All participants receive premium race kit + finisher medal + post-race lunch.</p>
+      <div class="price-tag">$35 – $75 USD (sliding scale)</div>
+      <form id="event-registration-form" class="register-form">
+        <input type="text" placeholder="Full name" id="regName" required>
+        <input type="email" placeholder="Email address" id="regEmail" required>
+        <select id="regCategory" style="padding: 14px 20px; border-radius: 60px; border: none; font-family: Poppins;">
+          <option value="21km Elite">21km Elite ($75)</option>
+          <option value="10km Fun Run">10km Fun Run ($45)</option>
+          <option value="5km Family">5km Family/Walk ($35)</option>
+        </select>
+        <button type="submit">Register Now <i class="bi bi-arrow-right"></i></button>
+      </form>
+      <p id="regMessage" style="margin-top: 20px; font-weight: 500;"></p>
+      <p style="margin-top: 30px; font-size: 0.9rem;"><i class="bi bi-shield-check"></i> Limited to 1500 participants – first come, first served.</p>
+    </div>
+  </section>
+
+  <!-- partners or sponsors mention (from original spirit) -->
+  <div style="max-width: 1200px; margin: 60px auto; text-align: center; padding: 0 20px;">
+    <h3 style="font-size: 1.8rem;">Powered by Ni-Wakati Sports Africa & Official Partners</h3>
+    <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 30px;">
+      <span style="background: #eee; padding: 8px 25px; border-radius: 40px;">Kenya Tourism Board</span>
+      <span style="background: #eee; padding: 8px 25px; border-radius: 40px;">Ministry of Sports</span>
+      <span style="background: #eee; padding: 8px 25px; border-radius: 40px;">Trail Running Association</span>
+      <span style="background: #eee; padding: 8px 25px; border-radius: 40px;">#RunForChange</span>
+    </div>
+  </div>
+</main>
+
+<!-- Footer (preserved from original) -->
+<footer class="pact-footer">
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div><div style="font-size:2rem; font-weight:800; font-family:'Barlow Condensed';">NI-WAKATI</div><p style="margin-top:15px;">Empowering African communities through sports and tourism.</p><div class="social-links"><a href="#" class="social-link"><i class="bi bi-facebook"></i></a><a href="#" class="social-link"><i class="bi bi-twitter-x"></i></a><a href="#" class="social-link"><i class="bi bi-instagram"></i></a><a href="#" class="social-link"><i class="bi bi-linkedin"></i></a></div></div>
+      <div><h3 class="footer-heading">Explore</h3><ul class="footer-menu"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="Event.html">Events</a></li><li><a href="insights.html">Insights</a></li></ul></div>
+      <div><h3 class="footer-heading">Contact</h3><ul class="footer-menu"><li><i class="bi bi-envelope"></i> niwakatisports@gmail.com</li><li><i class="bi bi-phone"></i> +254 731 993 460</li><li><i class="bi bi-geo-alt"></i> Nairobi, Kenya</li></ul></div>
+      <div><h3 class="footer-heading">Programs</h3><ul class="footer-menu"><li><a href="#">Sports & Tourism</a></li><li><a href="#">Emerging Sports</a></li><li><a href="#">Youth Leadership</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><div>© <span id="current-year"></span> Ni-Wakati Sports Africa. All rights reserved.<br><span style="font-size:0.8rem; opacity:0.7;">Designed by @Iconic.ink</span></div><div><a href="#">Privacy Policy</a> | <a href="#">Terms</a></div></div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    // Mobile navbar toggling (same functionality)
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navMenu = document.getElementById('navMenu');
+    if(mobileToggle && navMenu) {
+      mobileToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navMenu.classList.toggle('active');
+        const icon = mobileToggle.querySelector('i');
+        if(icon) icon.className = navMenu.classList.contains('active') ? 'bi bi-x' : 'bi bi-list';
+      });
+      document.querySelectorAll('.nav-link, .dropdown-menu a').forEach(link => {
+        link.addEventListener('click', () => { if(window.innerWidth <= 950) navMenu.classList.remove('active'); });
+      });
+    }
+    // Dropdown mobile handling
+    const dropdowns = document.querySelectorAll('.dropdown');
+    dropdowns.forEach(drop => {
+      const toggleBtn = drop.querySelector('.dropdown-toggle');
+      if(toggleBtn) {
+        toggleBtn.addEventListener('click', (e) => {
+          if(window.innerWidth <= 950) {
+            e.preventDefault();
+            drop.classList.toggle('active');
+          }
+        });
+      }
+    });
+    // navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 30) navbar.style.background = 'rgba(0, 0, 0, 0.96)';
+      else navbar.style.background = 'rgba(0, 0, 0, 0.85)';
+    });
+    
+    // Countdown timer for event: October 12, 2025 07:00:00
+    function updateCountdown() {
+      const eventDate = new Date('October 12, 2025 07:00:00 GMT+0300').getTime();
+      const now = new Date().getTime();
+      const distance = eventDate - now;
+      if (distance < 0) {
+        document.getElementById('countdownDisplay').innerHTML = '<span>Event Started!</span>';
+        return;
+      }
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (86400000)) / (3600000));
+      const minutes = Math.floor((distance % 3600000) / 60000);
+      const seconds = Math.floor((distance % 60000) / 1000);
+      document.getElementById('countdownDisplay').innerHTML = `<span>${days}d</span> <span>${hours}h</span> <span>${minutes}m</span> <span>${seconds}s</span>`;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+    
+    // Registration form handling (mock)
+    const regForm = document.getElementById('event-registration-form');
+    if(regForm) {
+      regForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('regName').value.trim();
+        const email = document.getElementById('regEmail').value.trim();
+        const category = document.getElementById('regCategory').value;
+        const msgDiv = document.getElementById('regMessage');
+        if(!name || !email) {
+          msgDiv.innerHTML = '<span style="color:#ffb347;">Please fill in name and email.</span>';
+          return;
+        }
+        msgDiv.innerHTML = `<span style="color:#a3e4a3;">🎉 Thanks ${name}! Registration for ${category} received. We’ll email details to ${email}. See you at the Rift!</span>`;
+        regForm.reset();
+        setTimeout(() => msgDiv.innerHTML = '', 5000);
+      });
+    }
+    
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+    
+    // smooth anchor scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if(href === "#" || href === "") return;
+        const target = document.querySelector(href);
+        if(target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  })();
+</script>
+</body>
+</html>

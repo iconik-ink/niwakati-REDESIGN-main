@@ -1,0 +1,1942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Get Involved | Ni-Wakati Sports Africa</title>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ========== RESET & BASE ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #000;
+            color: #fff;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .heading-font {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ========== SIMPLE FIXED NAVBAR ========== */
+        .simple-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0.8rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        /* Logo */
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .nav-logo-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .nav-logo-img:hover {
+            transform: scale(1.05);
+            border-color: #2c7a2c;
+        }
+
+        .nav-logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .nav-logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            letter-spacing: -0.5px;
+            font-family: 'Barlow Condensed', sans-serif;
+        }
+
+        .nav-logo-text span {
+            color: #4caf50;
+        }
+
+        /* Desktop Menu */
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            list-style: none;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            color: #f0f0f0;
+            font-weight: 500;
+            font-size: 1rem;
+            border-radius: 40px;
+            transition: all 0.25s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: #2c7a2c;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Dropdown */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .dropdown-toggle i {
+            font-size: 0.8rem;
+            transition: transform 0.2s;
+        }
+
+        .dropdown:hover .dropdown-toggle i {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            background: rgba(20, 20, 20, 0.97);
+            backdrop-filter: blur(16px);
+            border-radius: 20px;
+            min-width: 220px;
+            padding: 0.7rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: all 0.25s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 20px 35px rgba(0,0,0,0.3);
+            z-index: 100;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu li {
+            list-style: none;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.7rem 1.8rem;
+            color: #e0e0e0;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .dropdown-menu a:hover {
+            background: #2c7a2c;
+            color: white;
+            padding-left: 2rem;
+        }
+
+        /* Mobile Toggle Button */
+        .mobile-toggle {
+            display: none;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.8rem;
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .mobile-toggle:hover {
+            background: #2c7a2c;
+            transform: scale(1.02);
+        }
+
+        /* ===== RESPONSIVE NAV ===== */
+        @media (max-width: 950px) {
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 340px;
+                height: 100vh;
+                background: #0f0f0f;
+                backdrop-filter: blur(24px);
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start;
+                padding: 100px 1.5rem 2rem;
+                gap: 0.8rem;
+                transition: right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+                box-shadow: -5px 0 25px rgba(0,0,0,0.5);
+                border-left: 1px solid rgba(255,255,255,0.1);
+                overflow-y: auto;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-item {
+                width: 100%;
+            }
+
+            .nav-link {
+                display: block;
+                width: 100%;
+                padding: 0.9rem 1rem;
+                font-size: 1.1rem;
+                border-radius: 12px;
+            }
+
+            /* Mobile dropdown */
+            .dropdown {
+                width: 100%;
+            }
+
+            .dropdown-toggle {
+                justify-content: space-between;
+                width: 100%;
+            }
+
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                background: rgba(255,255,255,0.05);
+                backdrop-filter: none;
+                box-shadow: none;
+                border: none;
+                padding: 0;
+                margin-top: 0.5rem;
+                margin-left: 1rem;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                border-radius: 12px;
+            }
+
+            .dropdown.active .dropdown-menu {
+                max-height: 300px;
+            }
+
+            .dropdown-menu a {
+                padding: 0.7rem 1rem;
+            }
+
+            .dropdown-menu a:hover {
+                padding-left: 1.5rem;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .nav-container {
+                padding: 0.6rem 1rem;
+            }
+            .nav-logo-text {
+                font-size: 1.2rem;
+            }
+            .nav-logo-img {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        /* ========== GET INVOLVED PAGE STYLES ========== */
+        /* Hero Section */
+        .involve-hero {
+            position: relative;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding-top: 120px;
+            margin-bottom: 60px;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)),
+                url('assets/img/society.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #2c7a2c, #3b9c3b, #10b981);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientShift 8s ease infinite;
+            background-size: 200% 200%;
+            font-family: 'Barlow Condensed', sans-serif;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        /* Main Content */
+        .involve-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 80px;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+            color: #fff;
+            font-family: 'Barlow Condensed', sans-serif;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #2c7a2c, #10b981);
+            border-radius: 2px;
+        }
+
+        /* Ways to Get Involved */
+        .involve-ways {
+            margin-bottom: 80px;
+        }
+
+        .ways-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .way-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .way-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(44, 122, 44, 0.5);
+            box-shadow: 0 20px 40px rgba(44, 122, 44, 0.1);
+        }
+
+        .way-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #2c7a2c, #10b981);
+        }
+
+        .way-icon {
+            font-size: 3rem;
+            margin-bottom: 25px;
+            color: #2c7a2c;
+        }
+
+        .way-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #fff;
+            font-family: 'Barlow Condensed', sans-serif;
+        }
+
+        .way-description {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 25px;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .way-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #2c7a2c, #10b981);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .way-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(44, 122, 44, 0.3);
+        }
+
+        /* Partnership Types */
+        .partnership-section {
+            margin-bottom: 80px;
+        }
+
+        .partnership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .partnership-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 35px 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partnership-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(44, 122, 44, 0.5);
+            box-shadow: 0 15px 30px rgba(44, 122, 44, 0.1);
+        }
+
+        .partnership-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .badge-corporate {
+            background: #3b82f6;
+        }
+
+        .badge-ngo {
+            background: #7c3aed;
+        }
+
+        .badge-government {
+            background: #f59e0b;
+        }
+
+        .badge-individual {
+            background: #10b981;
+        }
+
+        .partnership-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #fff;
+            font-family: 'Barlow Condensed', sans-serif;
+        }
+
+        .partnership-description {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .partnership-benefits {
+            margin-bottom: 25px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .benefit-item i {
+            color: #2c7a2c;
+            margin-top: 3px;
+        }
+
+        /* Partners Carousel Styles */
+        .partners-carousel {
+            position: relative;
+            max-width: 1200px;
+            margin: 40px auto 0;
+            overflow: hidden;
+        }
+
+        .carousel-track-container {
+            overflow: hidden;
+            padding: 20px 0;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            gap: 30px;
+            padding: 0 15px;
+        }
+
+        .carousel-slide {
+            flex: 0 0 calc(33.333% - 20px);
+            min-width: 0;
+        }
+
+        .partner-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .partner-logo {
+            margin-bottom: 20px;
+        }
+
+        .partner-placeholder {
+            font-size: 3rem;
+        }
+
+        .partner-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .partner-type {
+            display: inline-block;
+            background: rgba(44, 122, 44, 0.3);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+
+        .partner-description {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .partner-link {
+            color: #2c7a2c;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .partner-link:hover {
+            color: #10b981;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(44, 122, 44, 0.8);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(44, 122, 44, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-btn-prev {
+            left: 15px;
+        }
+
+        .carousel-btn-next {
+            right: 15px;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: #2c7a2c;
+            transform: scale(1.2);
+        }
+
+        /* Volunteer Section */
+        .volunteer-section {
+            background: linear-gradient(45deg, rgba(44, 122, 44, 0.1), rgba(16, 185, 129, 0.1));
+            border-radius: 30px;
+            padding: 60px;
+            margin: 80px 0;
+            text-align: center;
+        }
+
+        .volunteer-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #fff;
+            font-family: 'Barlow Condensed', sans-serif;
+        }
+
+        .volunteer-text {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .volunteer-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .volunteer-option {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .volunteer-option:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .volunteer-option-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .volunteer-option-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Form Section */
+        .form-section {
+            margin-bottom: 80px;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #fff;
+            text-align: center;
+            font-family: 'Barlow Condensed', sans-serif;
+        }
+
+        .form-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 40px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .form-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .form-tab {
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 50px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-tab.active {
+            background: linear-gradient(45deg, #2c7a2c, #10b981);
+            color: white;
+        }
+
+        .form-tab:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+        }
+
+        .form-content {
+            display: none;
+        }
+
+        .form-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-label {
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .form-label.required:after {
+            content: ' *';
+            color: #ef4444;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            padding: 14px 16px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            font-size: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #2c7a2c;
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .form-checkbox input {
+            margin-top: 5px;
+        }
+
+        .form-checkbox label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .form-checkbox a {
+            color: #2c7a2c;
+            text-decoration: none;
+        }
+
+        .form-checkbox a:hover {
+            text-decoration: underline;
+        }
+
+        .form-submit {
+            display: block;
+            width: 100%;
+            background: linear-gradient(45deg, #2c7a2c, #10b981);
+            color: white;
+            padding: 16px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            margin-top: 30px;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(44, 122, 44, 0.3);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-bottom: 80px;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 40px auto 0;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .faq-question h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            margin: 0;
+        }
+
+        .faq-toggle {
+            color: #2c7a2c;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-answer p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            padding-bottom: 25px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        /* FOOTER STYLES */
+        .pact-footer {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 40px 0 20px;
+            border-top: 1px solid #ffffff;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-newsletter-section {
+            margin-bottom: 40px;
+        }
+
+        .footer-newsletter-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #ffffff;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-newsletter-description {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #999;
+            margin-bottom: 25px;
+            max-width: 700px;
+        }
+
+        .footer-newsletter-form {
+            display: flex;
+            gap: 15px;
+            max-width: 500px;
+        }
+
+        .footer-newsletter-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #444;
+            border-radius: 3px;
+            font-size: 0.95rem;
+            color: #fff;
+            background-color: #222;
+            transition: border-color 0.3s ease;
+        }
+
+        .footer-newsletter-form input:focus {
+            outline: none;
+            border-color: #2c7a2c;
+        }
+
+        .footer-signup-btn {
+            background-color: #2c7a2c;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 3px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-signup-btn:hover {
+            background-color: #1e5e1e;
+        }
+
+        .footer-divider {
+            border: none;
+            height: 1px;
+            background-color: #333;
+            margin: 30px 0;
+        }
+
+        .footer-bottom-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-bottom-section {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-bottom-section {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+        }
+
+        .footer-heading {
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #ffffff;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-menu li {
+            margin-bottom: 10px;
+        }
+
+        .footer-menu a {
+            color: #999;
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            letter-spacing: 0.3px;
+        }
+
+        .footer-menu a:hover {
+            color: #2c7a2c;
+        }
+
+        .contact-info {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #999;
+        }
+
+        .contact-info p {
+            margin-bottom: 8px;
+        }
+
+        .contact-info strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .social-link {
+            color: #999;
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            letter-spacing: 0.3px;
+        }
+
+        .social-link:hover {
+            color: #2c7a2c;
+        }
+
+        .copyright-section {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .copyright-text {
+            font-size: 0.85rem;
+            color: #777;
+            letter-spacing: 0.3px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+            .volunteer-section {
+                padding: 40px;
+            }
+            .form-container {
+                padding: 40px 30px;
+            }
+            .carousel-slide {
+                flex: 0 0 calc(50% - 15px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+            .ways-grid,
+            .partnership-grid {
+                grid-template-columns: 1fr;
+            }
+            .volunteer-options {
+                grid-template-columns: 1fr;
+            }
+            .form-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            .form-tab {
+                width: 100%;
+                text-align: center;
+            }
+            .carousel-slide {
+                flex: 0 0 calc(100% - 30px);
+            }
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            .volunteer-title,
+            .form-title {
+                font-size: 1.8rem;
+            }
+            .way-card,
+            .partnership-card,
+            .volunteer-option {
+                padding: 25px 20px;
+            }
+            .carousel-btn {
+                display: none;
+            }
+            .footer-newsletter-form {
+                flex-direction: column;
+            }
+            .footer-newsletter-form input,
+            .footer-signup-btn {
+                width: 100%;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========== REPLICATED NAVBAR FROM ORIGINAL ========== -->
+<header class="simple-navbar" id="navbar">
+    <div class="nav-container">
+        <div class="nav-logo">
+            <div class="nav-logo-img">
+                <img src="assets/img/logo.jpg" alt="Ni-Wakati Logo" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'45\' fill=\'%232c7a2c\' stroke=\'white\' stroke-width=\'3\'/%3E%3Ctext x=\'50\' y=\'70\' font-size=\'36\' fill=\'white\' text-anchor=\'middle\' font-family=\'Barlow Condensed\'%3ENW%3C/text%3E%3C/svg%3E';">
+            </div>
+            <div class="nav-logo-text">NI-<span>WAKATI</span></div>
+        </div>
+        
+        <div class="mobile-toggle" id="mobileToggle">
+            <i class="bi bi-list"></i>
+        </div>
+        
+        <ul class="nav-menu" id="navMenu">
+            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+            
+            <li class="nav-item dropdown">
+                <div class="nav-link dropdown-toggle">About <i class="bi bi-chevron-down"></i></div>
+                <ul class="dropdown-menu">
+                    <li><a href="about.html#vision">Mission & Vision</a></li>
+                    <li><a href="about.html#programs">Our Programs</a></li>
+                    <li><a href="about.html#principles">Core Principles</a></li>
+                </ul>
+            </li>
+            
+            <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li>
+            
+            <li class="nav-item dropdown">
+                <div class="nav-link dropdown-toggle">Stories <i class="bi bi-chevron-down"></i></div>
+                <ul class="dropdown-menu">
+                    <li><a href="insights.html#impact">Impact & Sustainability</a></li>
+                    <li><a href="insights.html">All Stories</a></li>
+                </ul>
+            </li>
+            
+            <li class="nav-item dropdown">
+                <div class="nav-link dropdown-toggle active">Get Involved <i class="bi bi-chevron-down"></i></div>
+                <ul class="dropdown-menu">
+                    <li><a href="involved.html#partnerships">Partnerships</a></li>
+                    <li><a href="involved.html#partner">Partner With Us</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="involve-hero">
+    <div class="hero-background"></div>
+    <div class="hero-content">
+        <h1 class="hero-title">Join Our Movement</h1>
+        <p class="hero-subtitle">Be Part of Transforming Africa Through Sports. Your Support Creates Lasting Impact in Communities Across the Continent.</p>
+    </div>
+</section>
+
+<!-- Main Content -->
+<main class="involve-main">
+    <!-- Ways to Get Involved -->
+    <section class="involve-ways fade-in">
+        <h2 class="section-title">Ways to Get Involved</h2>
+        <div class="ways-grid">
+            <!-- Partner -->
+            <div class="way-card">
+                <div class="way-icon">🤝</div>
+                <h3 class="way-title">Become a Partner</h3>
+                <p class="way-description">Join forces with us through corporate partnerships, NGO collaborations, or government alliances to amplify our impact across Africa.</p>
+                <button class="way-button" onclick="showForm('partner')">Partner With Us</button>
+            </div>
+
+            <!-- Volunteer -->
+            <div class="way-card">
+                <div class="way-icon">👥</div>
+                <h3 class="way-title">Volunteer</h3>
+                <p class="way-description">Share your skills and passion. From coaching to event management, your time can transform lives through sports.</p>
+                <button class="way-button" onclick="showForm('volunteer')">Join as Volunteer</button>
+            </div>
+
+            <!-- Donate -->
+            <div class="way-card">
+                <div class="way-icon">❤️</div>
+                <h3 class="way-title">Make a Donation</h3>
+                <p class="way-description">Support our programs with a one-time or recurring donation. Every contribution helps us reach more communities.</p>
+                <button class="way-button" onclick="showForm('donate')">Donate Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partnership Types -->
+    <section class="partnership-section fade-in" id="partnerships">
+        <h2 class="section-title">Partnership Opportunities</h2>
+        <div class="partnership-grid">
+            <!-- Corporate -->
+            <div class="partnership-card">
+                <span class="partnership-badge badge-corporate">CORPORATE</span>
+                <h3 class="partnership-title">Corporate Partnerships</h3>
+                <p class="partnership-description">Align your brand with meaningful social impact while gaining exposure across Africa's fastest-growing sports markets.</p>
+                
+                <div class="partnership-benefits">
+                    <div class="benefit-item">
+                        <i class="fas fa-check"></i>
+                        <span>Brand visibility across 15 African countries</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check"></i>
+                        <span>ESG and CSR impact reporting</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check"></i>
+                        <span>Employee engagement opportunities</span>
+                    </div>
+                </div>
+                
+                <button class="way-button" onclick="showForm('corporate')">Partner as Corporate</button>
+            </div>
+
+            <!-- NGO/Non-Profit -->
+            <div class="partnership-card">
+                <span class="partnership-badge badge-ngo">NGO/NON-PROFIT</span>
+                <h3 class="partnership-title">NGO Collaborations</h3>
+                <p class="partnership-description">Combine forces to create comprehensive community development programs that integrate sports with other social initiatives.</p>
+                
+                <div class="partnership-benefits">
+                    <div class="benefit-item">
+                        <i class="fas fa-check"></i>
+                        <span>Shared resources and expertise</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check"></i>
+                        <span>Joint grant applications</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check"></i>
+                        <span>Cross-program integration</span>
+                    </div>
+                </div>
+                
+                <button class="way-button" onclick="showForm('ngo')">Collaborate as NGO</button>
+            </div>
+
+            <!-- Government -->
+            <div class="partnership-card">
+                <span class="partnership-badge badge-government">GOVERNMENT</span>
+                <h3 class="partnership-title">Government Partnerships</h3>
+                <p class="partnership-description">Work with us to develop national and regional sports policies, infrastructure, and youth development programs.</p>
+                
+                <div class="partnership-benefits">
+                    <div class="benefit-item">
+                        <i class="fas fa-check"></i>
+                        <span>Policy development support</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check"></i>
+                        <span>Infrastructure planning</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check"></i>
+                        <span>Capacity building programs</span>
+                    </div>
+                </div>
+                
+                <button class="way-button" onclick="showForm('government')">Partner as Government</button>
+            </div>
+
+            <!-- Individual -->
+            <div class="partnership-card">
+                <span class="partnership-badge badge-individual">INDIVIDUAL</span>
+                <h3 class="partnership-title">Individual Supporters</h3>
+                <p class="partnership-description">Join our community of changemakers through donations, advocacy, or skill-based volunteering.</p>
+                
+                <div class="partnership-benefits">
+                    <div class="benefit-item">
+                        <i class="fas fa-check"></i>
+                        <span>Exclusive updates and insights</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check"></i>
+                        <span>Invitations to special events</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check"></i>
+                        <span>Recognition in our annual report</span>
+                    </div>
+                </div>
+                
+                <button class="way-button" onclick="showForm('individual')">Get Involved</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUR PARTNERS -->
+    <section class="partners-section fade-in">
+        <div class="partners-container">
+            <h2 class="section-title">Our Partners</h2>
+            <p class="partners-subtitle" style="color: rgba(255,255,255,0.7); margin-bottom: 30px;">We're proud to collaborate with these visionary organizations who share our commitment to transforming lives through sports across Africa.</p>
+            
+            <!-- Carousel Container -->
+            <div class="partners-carousel">
+                <div class="carousel-track-container">
+                    <div class="carousel-track">
+                        <!-- Partner 1 -->
+                        <div class="carousel-slide">
+                            <div class="partner-card">
+                                <div class="partner-logo"><div class="partner-placeholder">🌍</div></div>
+                                <h3 class="partner-name">Global Sustainable Sports UK</h3>
+                                <span class="partner-type">Global Partner</span>
+                                <p class="partner-description">Offers partnership packages for organisations driving sustainability through sport globally.</p>
+                                <a href="https://www.globalsustainablesport.com/" target="_blank" class="partner-link">Visit Website</a>
+                            </div>
+                        </div>
+                        <!-- Partner 2 -->
+                        <div class="carousel-slide">
+                            <div class="partner-card">
+                                <div class="partner-logo"><div class="partner-placeholder">🌍</div></div>
+                                <h3 class="partner-name">World Dodgeball Association</h3>
+                                <span class="partner-type">Global Partner</span>
+                                <p class="partner-description">Works with regional governing bodies to further dodgeball through grassroots and events.</p>
+                                <a href="https://www.dodgeball.sport/" target="_blank" class="partner-link">Visit Website</a>
+                            </div>
+                        </div>
+                        <!-- Partner 3 -->
+                        <div class="carousel-slide">
+                            <div class="partner-card">
+                                <div class="partner-logo"><div class="partner-placeholder">🌍</div></div>
+                                <h3 class="partner-name">5thread</h3>
+                                <span class="partner-type">Global Partner</span>
+                                <p class="partner-description">Believes in a sustainable future through systems change in clothing and textiles.</p>
+                                <a href="https://5thread.com/" target="_blank" class="partner-link">Visit Website</a>
+                            </div>
+                        </div>
+                        <!-- Partner 4 -->
+                        <div class="carousel-slide">
+                            <div class="partner-card">
+                                <div class="partner-logo"><div class="partner-placeholder">🌍</div></div>
+                                <h3 class="partner-name">FTA and eSports Trampoline</h3>
+                                <span class="partner-type">Government Partner</span>
+                                <p class="partner-description">A community for freestyle trampoline athletes, focusing on unique expression and style.</p>
+                                <a href="https://www.freestyletrampolineassociation.com/" target="_blank" class="partner-link">Visit Website</a>
+                            </div>
+                        </div>
+                        <!-- Partner 5 -->
+                        <div class="carousel-slide">
+                            <div class="partner-card">
+                                <div class="partner-logo"><div class="partner-placeholder">🌍</div></div>
+                                <h3 class="partner-name">Amerlink.us</h3>
+                                <span class="partner-type">Global Partner</span>
+                                <p class="partner-description">Helps international student-athletes secure sports scholarships in the United States.</p>
+                                <a href="https://www.amerlink.us/en/" target="_blank" class="partner-link">Visit Website</a>
+                            </div>
+                        </div>
+                        <!-- Partner 6 -->
+                        <div class="carousel-slide">
+                            <div class="partner-card">
+                                <div class="partner-logo"><div class="partner-placeholder">🌍</div></div>
+                                <h3 class="partner-name">Racemate</h3>
+                                <span class="partner-type">Global Partner</span>
+                                <p class="partner-description">Revolutionizing how athletes train, compete, and experience races with cutting-edge solutions.</p>
+                                <a href="https://racemate.ai/about-us/" target="_blank" class="partner-link">Visit Website</a>
+                            </div>
+                        </div>
+                        <!-- Partner 7 -->
+                        <div class="carousel-slide">
+                            <div class="partner-card">
+                                <div class="partner-logo"><div class="partner-placeholder">🌍</div></div>
+                                <h3 class="partner-name">Sportsbid</h3>
+                                <span class="partner-type">Global Partner</span>
+                                <p class="partner-description">An auction platform designed specifically for sports clubs, agencies, and charities.</p>
+                                <a href="https://www.sportsbid.store/Page-About-us" target="_blank" class="partner-link">Visit Website</a>
+                            </div>
+                        </div>
+                        <!-- Partner 8 -->
+                        <div class="carousel-slide">
+                            <div class="partner-card">
+                                <div class="partner-logo"><div class="partner-placeholder">🌍</div></div>
+                                <h3 class="partner-name">Whatcom Waves</h3>
+                                <span class="partner-type">Global Partner</span>
+                                <p class="partner-description">Non-profit, semi-professional indoor women's soccer organization based in Washington.</p>
+                                <a href="https://www.whatcomwaves.com/about" target="_blank" class="partner-link">Visit Website</a>
+                            </div>
+                        </div>
+                        <!-- Partner 9 -->
+                        <div class="carousel-slide">
+                            <div class="partner-card">
+                                <div class="partner-logo"><div class="partner-placeholder">🌍</div></div>
+                                <h3 class="partner-name">Mass Participation World</h3>
+                                <span class="partner-type">Global Partner</span>
+                                <p class="partner-description">Facilitating engagement with a global community of mass participation professionals.</p>
+                                <a href="https://massparticipationworld.com/" target="_blank" class="partner-link">Visit Website</a>
+                            </div>
+                        </div>
+                        <!-- Partner 10 -->
+                        <div class="carousel-slide">
+                            <div class="partner-card">
+                                <div class="partner-logo"><div class="partner-placeholder">🌍</div></div>
+                                <h3 class="partner-name">Esports Research Network</h3>
+                                <span class="partner-type">Global Partner</span>
+                                <p class="partner-description">International network of researchers advancing interdisciplinary esports studies.</p>
+                                <a href="https://esportsresearch.net/" target="_blank" class="partner-link">Visit Website</a>
+                            </div>
+                        </div>
+                        <!-- Partner 11 -->
+                        <div class="carousel-slide">
+                            <div class="partner-card">
+                                <div class="partner-logo"><div class="partner-placeholder">🌍</div></div>
+                                <h3 class="partner-name">3XV Sports</h3>
+                                <span class="partner-type">Global Partner</span>
+                                <p class="partner-description">Athlete management and investment company at the intersection of sport, culture, and capital.</p>
+                                <a href="https://3xvsports.com/" target="_blank" class="partner-link">Visit Website</a>
+                            </div>
+                        </div>
+                        <!-- Partner 12 -->
+                        <div class="carousel-slide">
+                            <div class="partner-card">
+                                <div class="partner-logo"><div class="partner-placeholder">🌍</div></div>
+                                <h3 class="partner-name">IUCN S4Nature</h3>
+                                <span class="partner-type">Global Partner</span>
+                                <p class="partner-description">Partnership delivering transformative action for nature across the sports sector.</p>
+                                <a href="https://iucn.org/" target="_blank" class="partner-link">Visit Website</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-btn carousel-btn-prev"><span>&#10094;</span></button>
+                <button class="carousel-btn carousel-btn-next"><span>&#10095;</span></button>
+                <div class="carousel-dots"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Volunteer Section -->
+    <section class="volunteer-section fade-in" id="volunteer">
+        <h2 class="volunteer-title">Volunteer With Us</h2>
+        <p class="volunteer-text">Join a diverse team of passionate individuals making a difference through sports. Whether you can give a few hours or make a long-term commitment, your skills are needed.</p>
+        
+        <div class="volunteer-options">
+            <div class="volunteer-option">
+                <h4 class="volunteer-option-title">On-Ground Volunteer</h4>
+                <p class="volunteer-option-description">Coach, mentor, or assist with events in communities across Africa.</p>
+            </div>
+            <div class="volunteer-option">
+                <h4 class="volunteer-option-title">Virtual Volunteer</h4>
+                <p class="volunteer-option-description">Support us remotely with skills in marketing, design, writing, or data analysis.</p>
+            </div>
+            <div class="volunteer-option">
+                <h4 class="volunteer-option-title">Expert Consultant</h4>
+                <p class="volunteer-option-description">Share your professional expertise in sports, development, or business.</p>
+            </div>
+            <div class="volunteer-option">
+                <h4 class="volunteer-option-title">University Intern</h4>
+                <p class="volunteer-option-description">Gain practical experience while contributing to meaningful projects.</p>
+            </div>
+        </div>
+        
+        <button class="way-button" onclick="showForm('volunteer')">Apply to Volunteer</button>
+    </section>
+
+    <!-- Forms Section -->
+    <section class="form-section fade-in" id="donate">
+        <div class="form-container">
+            <h2 class="form-title">Get Started Today</h2>
+            <p class="form-subtitle">Choose how you'd like to get involved and fill out the appropriate form below.</p>
+            
+            <div class="form-tabs">
+                <button class="form-tab active" onclick="showFormTab('partner')">Partnership</button>
+                <button class="form-tab" onclick="showFormTab('volunteer')">Volunteer</button>
+                <button class="form-tab" onclick="showFormTab('donate')">Donation</button>
+                <button class="form-tab" onclick="showFormTab('general')">General Inquiry</button>
+            </div>
+            
+            <!-- Partnership Form -->
+            <div class="form-content active" id="partnerForm">
+                <form id="partnershipForm">
+                    <div class="form-grid">
+                        <div class="form-group"><label class="form-label required">Organization Name</label><input type="text" class="form-input" required></div>
+                        <div class="form-group"><label class="form-label required">Organization Type</label><select class="form-select" required><option value="">Select type</option><option value="corporate">Corporate/Business</option><option value="ngo">NGO/Non-Profit</option><option value="government">Government Agency</option><option value="foundation">Foundation</option><option value="academic">Academic Institution</option></select></div>
+                        <div class="form-group"><label class="form-label required">Contact Person</label><input type="text" class="form-input" required></div>
+                        <div class="form-group"><label class="form-label required">Email Address</label><input type="email" class="form-input" required></div>
+                        <div class="form-group"><label class="form-label required">Phone Number</label><input type="tel" class="form-input" required></div>
+                        <div class="form-group"><label class="form-label">Website</label><input type="url" class="form-input" placeholder="https://"></div>
+                        <div class="form-group full-width"><label class="form-label required">Country of Operation</label><select class="form-select" required><option value="">Select country</option><option value="kenya">Kenya</option><option value="uganda">Uganda</option><option value="tanzania">Tanzania</option><option value="rwanda">Rwanda</option><option value="ghana">Ghana</option><option value="multiple">Multiple Countries</option><option value="pan-african">Pan-African</option></select></div>
+                        <div class="form-group full-width"><label class="form-label required">Partnership Interest</label><select class="form-select" required><option value="">Select interest</option><option value="financial">Financial Sponsorship</option><option value="in-kind">In-Kind Support</option><option value="program">Program Partnership</option><option value="research">Research Collaboration</option><option value="advocacy">Advocacy & Awareness</option><option value="other">Other</option></select></div>
+                        <div class="form-group full-width"><label class="form-label required">Tell us about your organization and partnership vision</label><textarea class="form-textarea" required placeholder="Describe your organization, mission, and how you envision partnering with Ni-Wakati Sports Africa..."></textarea></div>
+                    </div>
+                    <div class="form-checkbox"><input type="checkbox" id="partnerAgreement" required><label for="partnerAgreement">I agree to receive communications from Ni-Wakati Sports Africa and understand that my information will be handled according to the <a href="#">Privacy Policy</a>.</label></div>
+                    <button type="submit" class="form-submit">Submit Partnership Inquiry</button>
+                </form>
+            </div>
+            
+            <!-- Volunteer Form -->
+            <div class="form-content" id="volunteerForm">
+                <form id="volunteerApplication">
+                    <div class="form-grid">
+                        <div class="form-group"><label class="form-label required">First Name</label><input type="text" class="form-input" required></div>
+                        <div class="form-group"><label class="form-label required">Last Name</label><input type="text" class="form-input" required></div>
+                        <div class="form-group"><label class="form-label required">Email Address</label><input type="email" class="form-input" required></div>
+                        <div class="form-group"><label class="form-label required">Phone Number</label><input type="tel" class="form-input" required></div>
+                        <div class="form-group"><label class="form-label required">Country of Residence</label><select class="form-select" required><option value="">Select country</option><option value="kenya">Kenya</option><option value="uganda">Uganda</option><option value="tanzania">Tanzania</option><option value="rwanda">Rwanda</option><option value="ghana">Ghana</option><option value="other">Other</option></select></div>
+                        <div class="form-group"><label class="form-label">City/Town</label><input type="text" class="form-input"></div>
+                        <div class="form-group full-width"><label class="form-label required">Volunteer Type</label><select class="form-select" required><option value="">Select type</option><option value="on-ground">On-Ground Volunteer</option><option value="virtual">Virtual Volunteer</option><option value="consultant">Expert Consultant</option><option value="intern">University Intern</option></select></div>
+                        <div class="form-group full-width"><label class="form-label required">Skills & Expertise</label><textarea class="form-textarea" required placeholder="Describe your skills, experience, and areas of expertise..."></textarea></div>
+                        <div class="form-group full-width"><label class="form-label">Availability & Commitment</label><textarea class="form-textarea" placeholder="Tell us about your availability (hours per week, duration)..."></textarea></div>
+                    </div>
+                    <div class="form-checkbox"><input type="checkbox" id="volunteerAgreement" required><label for="volunteerAgreement">I understand that this is a volunteer position and agree to the <a href="#">Volunteer Agreement</a>.</label></div>
+                    <button type="submit" class="form-submit">Submit Volunteer Application</button>
+                </form>
+            </div>
+            
+            <!-- Donation Form -->
+            <div class="form-content" id="donateForm">
+                <form id="donationForm">
+                    <div class="form-grid">
+                        <div class="form-group"><label class="form-label required">First Name</label><input type="text" class="form-input" required></div>
+                        <div class="form-group"><label class="form-label required">Last Name</label><input type="text" class="form-input" required></div>
+                        <div class="form-group"><label class="form-label required">Email Address</label><input type="email" class="form-input" required></div>
+                        <div class="form-group"><label class="form-label">Phone Number</label><input type="tel" class="form-input"></div>
+                        <div class="form-group full-width"><label class="form-label required">Donation Type</label><select class="form-select" required><option value="">Select type</option><option value="one-time">One-time Donation</option><option value="monthly">Monthly Recurring</option><option value="quarterly">Quarterly Recurring</option><option value="annual">Annual Recurring</option></select></div>
+                        <div class="form-group full-width"><label class="form-label required">Donation Amount (USD)</label><select class="form-select" required id="donationAmountSelect"><option value="">Select amount</option><option value="25">$25 - Sports equipment for 5 children</option><option value="50">$50 - Train a community coach</option><option value="100">$100 - Support a youth tournament</option><option value="250">$250 - Fund a sports clinic</option><option value="500">$500 - Equip a community sports center</option><option value="1000">$1,000 - Launch a new program</option><option value="custom">Custom Amount</option></select></div>
+                        <div class="form-group full-width" id="customAmount" style="display: none;"><label class="form-label">Custom Amount (USD)</label><input type="number" class="form-input" min="1" placeholder="Enter custom amount"></div>
+                        <div class="form-group full-width"><label class="form-label">Designation (Optional)</label><select class="form-select"><option value="">Where should your donation go?</option><option value="general">General Fund - Greatest Need</option><option value="youth">Youth Sports Programs</option><option value="women">Women in Sports</option><option value="emerging">Emerging Sports</option><option value="facilities">Sports Facilities</option><option value="training">Coach Training</option></select></div>
+                    </div>
+                    <div class="form-checkbox"><input type="checkbox" id="donationAgreement" required><label for="donationAgreement">I agree to the <a href="#">Donation Terms</a> and understand this is a charitable contribution.</label></div>
+                    <button type="submit" class="form-submit">Proceed to Secure Payment</button>
+                </form>
+            </div>
+            
+            <!-- General Inquiry Form -->
+            <div class="form-content" id="generalForm">
+                <form id="generalInquiry">
+                    <div class="form-grid">
+                        <div class="form-group"><label class="form-label required">First Name</label><input type="text" class="form-input" required></div>
+                        <div class="form-group"><label class="form-label required">Last Name</label><input type="text" class="form-input" required></div>
+                        <div class="form-group"><label class="form-label required">Email Address</label><input type="email" class="form-input" required></div>
+                        <div class="form-group"><label class="form-label">Phone Number</label><input type="tel" class="form-input"></div>
+                        <div class="form-group"><label class="form-label">Organization</label><input type="text" class="form-input"></div>
+                        <div class="form-group"><label class="form-label">Country</label><input type="text" class="form-input"></div>
+                        <div class="form-group full-width"><label class="form-label required">Inquiry Type</label><select class="form-select" required><option value="">Select type</option><option value="information">Request for Information</option><option value="speaker">Request a Speaker</option><option value="media">Media Inquiry</option><option value="research">Research Collaboration</option><option value="other">Other</option></select></div>
+                        <div class="form-group full-width"><label class="form-label required">Your Message</label><textarea class="form-textarea" required placeholder="How can we help you?..."></textarea></div>
+                    </div>
+                    <div class="form-checkbox"><input type="checkbox" id="inquiryAgreement" required><label for="inquiryAgreement">I agree to receive communications from Ni-Wakati Sports Africa.</label></div>
+                    <button type="submit" class="form-submit">Send Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section fade-in">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-container">
+            <div class="faq-item"><div class="faq-question"><h3>What types of partnerships does Ni-Wakati Sports Africa offer?</h3><span class="faq-toggle">+</span></div><div class="faq-answer"><p>We offer various partnership models including: Corporate Sponsorships (financial and in-kind), Program Partnerships (co-designing and implementing sports initiatives), NGO Collaborations (joint projects and resource sharing), Government Partnerships (policy development and national programs), and Academic Partnerships (research and student placements).</p></div></div>
+            <div class="faq-item"><div class="faq-question"><h3>Can I volunteer remotely or do I need to be in Africa?</h3><span class="faq-toggle">+</span></div><div class="faq-answer"><p>We offer both on-ground and virtual volunteering opportunities. Virtual volunteers can contribute through skills like digital marketing, graphic design, content writing, data analysis, research, grant writing, and social media management.</p></div></div>
+            <div class="faq-item"><div class="faq-question"><h3>How are donations used and what's the impact?</h3><span class="faq-toggle">+</span></div><div class="faq-answer"><p>85% of donations go directly to program implementation, 10% to organizational capacity building, and 5% to administrative costs. All donors receive annual impact reports.</p></div></div>
+            <div class="faq-item"><div class="faq-question"><h3>What skills are needed for volunteering?</h3><span class="faq-toggle">+</span></div><div class="faq-answer"><p>We need diverse skills including: Sports coaching, Event management, Community mobilization, Digital skills, Research and data analysis, Grant writing, Translation, and Professional services.</p></div></div>
+            <div class="faq-item"><div class="faq-question"><h3>How are partnerships structured and measured?</h3><span class="faq-toggle">+</span></div><div class="faq-answer"><p>Partnerships begin with a discovery phase, followed by co-creation of objectives. We establish clear KPIs including youth reached, community engagement metrics, skill development outcomes, and economic impact.</p></div></div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="pact-footer">
+    <div class="footer-container">
+        <div class="footer-newsletter-section">
+            <h2 class="footer-newsletter-title">STAY CONNECTED WITH OUR IMPACT</h2>
+            <p class="footer-newsletter-description">Subscribe to receive updates on partnership opportunities, volunteer stories, and the impact of your support.</p>
+            <form class="footer-newsletter-form"><input type="email" placeholder="Your email address..." required><button type="submit" class="footer-signup-btn">Sign Up</button></form>
+        </div>
+        <hr class="footer-divider">
+        <div class="footer-bottom-section">
+            <div class="footer-column"><ul class="footer-menu"><li><a href="index.html">HOME</a></li><li><a href="about.html">ABOUT</a></li><li><a href="events.html">EVENTS</a></li><li><a href="insights.html">STORIES</a></li><li><a href="involved.html">GET INVOLVED</a></li></ul></div>
+            <div class="footer-column"><h3 class="footer-heading">CONTACT</h3><div class="contact-info"><p><strong>Ni-Wakati Sports Africa</strong></p><p>Nairobi, Kenya</p><p>P: +254 731 993 460</p><p>niwakatisports@gmail.com</p></div></div>
+            <div class="footer-column"><h3 class="footer-heading">FIND US ON</h3><div class="social-links"><a href="https://www.linkedin.com/in/steve-muturi-82a412215" class="social-link">Linkedin</a><a href="https://www.instagram.com/niwakatisports/reels/" class="social-link">Instagram</a><a href="#" class="social-link">YouTube</a></div></div>
+        </div>
+        <hr class="footer-divider">
+        <div class="copyright-section"><p class="copyright-text">©2024 Ni-Wakati Sports Africa. All rights reserved.</p></div>
+    </div>
+</footer>
+
+<!-- Font Awesome for icons -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+<script>
+    // ========== NAVBAR FUNCTIONALITY ==========
+    (function(){
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+        const toggleIcon = mobileToggle ? mobileToggle.querySelector('i') : null;
+        
+        function closeMenu() { if(navMenu) navMenu.classList.remove('active'); if(toggleIcon) toggleIcon.className = 'bi bi-list'; }
+        function openMenu() { if(navMenu) navMenu.classList.add('active'); if(toggleIcon) toggleIcon.className = 'bi bi-x'; }
+        
+        if(mobileToggle && navMenu) {
+            mobileToggle.addEventListener('click', (e) => { e.stopPropagation(); if(navMenu.classList.contains('active')) closeMenu(); else openMenu(); });
+            document.querySelectorAll('.nav-link, .dropdown-menu a').forEach(link => { link.addEventListener('click', () => { if(window.innerWidth <= 950) closeMenu(); }); });
+            document.addEventListener('click', (e) => { if(window.innerWidth <= 950 && navMenu.classList.contains('active') && !navMenu.contains(e.target) && !mobileToggle.contains(e.target)) closeMenu(); });
+        }
+        
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(drop => {
+            const toggleBtn = drop.querySelector('.dropdown-toggle');
+            if(toggleBtn) {
+                toggleBtn.addEventListener('click', (e) => { if(window.innerWidth <= 950) { e.preventDefault(); drop.classList.toggle('active'); } });
+            }
+        });
+        window.addEventListener('resize', () => { if(window.innerWidth > 950) dropdowns.forEach(d => d.classList.remove('active')); });
+        
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => { if(navbar) { if(window.scrollY > 30) navbar.style.background = 'rgba(0, 0, 0, 0.96)'; else navbar.style.background = 'rgba(0, 0, 0, 0.85)'; } });
+    })();
+
+    // ========== PAGE FUNCTIONALITY ==========
+    function showFormTab(tabName) {
+        document.querySelectorAll('.form-content').forEach(form => form.classList.remove('active'));
+        document.querySelectorAll('.form-tab').forEach(tab => tab.classList.remove('active'));
+        document.getElementById(tabName + 'Form').classList.add('active');
+        event.target.classList.add('active');
+        document.getElementById('donate').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function showForm(formType) {
+        const formMap = { 'partner': 'partner', 'corporate': 'partner', 'ngo': 'partner', 'government': 'partner', 'individual': 'partner', 'volunteer': 'volunteer', 'donate': 'donate' };
+        const targetTab = formMap[formType] || 'general';
+        const tabButtons = document.querySelectorAll('.form-tab');
+        let tabIndex = 0;
+        if(targetTab === 'partner') tabIndex = 0;
+        else if(targetTab === 'volunteer') tabIndex = 1;
+        else if(targetTab === 'donate') tabIndex = 2;
+        else tabIndex = 3;
+        if(tabButtons[tabIndex]) tabButtons[tabIndex].click();
+    }
+
+    // FAQ functionality
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => { question.parentElement.classList.toggle('active'); });
+    });
+
+    // Custom amount field toggle
+    const donationSelect = document.querySelector('#donationAmountSelect');
+    if(donationSelect) {
+        donationSelect.addEventListener('change', function() {
+            const customAmountField = document.getElementById('customAmount');
+            if(this.value === 'custom') { customAmountField.style.display = 'block'; customAmountField.querySelector('input').required = true; }
+            else { customAmountField.style.display = 'none'; if(customAmountField.querySelector('input')) customAmountField.querySelector('input').required = false; }
+        });
+    }
+
+    // Form submissions
+    document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let message = 'Thank you for your submission! Our team will contact you shortly.';
+            if(this.id === 'donationForm') message = 'Thank you for your generous donation! You will be redirected to our secure payment gateway.';
+            alert(message);
+            this.reset();
+            const customAmountField = document.getElementById('customAmount');
+            if(customAmountField) customAmountField.style.display = 'none';
+        });
+    });
+
+    // Partners Carousel Functionality
+    function initPartnersCarousel() {
+        const track = document.querySelector('.carousel-track');
+        const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+        const nextButton = document.querySelector('.carousel-btn-next');
+        const prevButton = document.querySelector('.carousel-btn-prev');
+        const dotsContainer = document.querySelector('.carousel-dots');
+        if (!track || !slides.length) return;
+        
+        let currentIndex = 0;
+        let slidesPerView = getSlidesPerView();
+        
+        function getSlidesPerView() {
+            if (window.innerWidth <= 480) return 1;
+            if (window.innerWidth <= 768) return 2;
+            return 3;
+        }
+        
+        slides.forEach((_, index) => {
+            const dot = document.createElement('button');
+            dot.classList.add('carousel-dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(index));
+            dotsContainer.appendChild(dot);
+        });
+        
+        const dots = document.querySelectorAll('.carousel-dot');
+        
+        function updateSlidePosition() {
+            const slideWidth = slides[0].getBoundingClientRect().width;
+            const gap = 30;
+            const offset = (slideWidth + gap) * currentIndex;
+            track.style.transform = `translateX(-${offset}px)`;
+            dots.forEach((dot, index) => dot.classList.toggle('active', index === currentIndex));
+        }
+        
+        function goToSlide(index) {
+            const maxIndex = slides.length - slidesPerView;
+            currentIndex = Math.max(0, Math.min(index, maxIndex));
+            updateSlidePosition();
+        }
+        
+        function nextSlide() {
+            const maxIndex = slides.length - slidesPerView;
+            if (currentIndex < maxIndex) currentIndex++;
+            else currentIndex = 0;
+            updateSlidePosition();
+        }
+        
+        function prevSlide() {
+            if (currentIndex > 0) currentIndex--;
+            else currentIndex = slides.length - slidesPerView;
+            updateSlidePosition();
+        }
+        
+        if(nextButton) nextButton.addEventListener('click', nextSlide);
+        if(prevButton) prevButton.addEventListener('click', prevSlide);
+        
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                slidesPerView = getSlidesPerView();
+                goToSlide(Math.min(currentIndex, slides.length - slidesPerView));
+            }, 250);
+        });
+        
+        let autoSlideInterval = setInterval(nextSlide, 5000);
+        const carousel = document.querySelector('.partners-carousel');
+        if(carousel) {
+            carousel.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+            carousel.addEventListener('mouseleave', () => { autoSlideInterval = setInterval(nextSlide, 5000); });
+        }
+        updateSlidePosition();
+    }
+
+    // Scroll animations
+    function handleScrollAnimations() {
+        document.querySelectorAll('.fade-in').forEach(element => {
+            if(element.getBoundingClientRect().top < window.innerHeight - 100) element.classList.add('visible');
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        initPartnersCarousel();
+        handleScrollAnimations();
+        window.addEventListener('scroll', handleScrollAnimations);
+        const currentYear = new Date().getFullYear();
+        const copyrightText = document.querySelector('.copyright-text');
+        if(copyrightText) copyrightText.textContent = copyrightText.textContent.replace('2024', currentYear);
+        
+        const newsletterForm = document.querySelector('.footer-newsletter-form');
+        if(newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input[type="email"]').value;
+                if(email) alert(`Thank you for subscribing with: ${email}\nYou'll receive updates on partnership and volunteer opportunities.`);
+                this.reset();
+            });
+        }
+    });
+</script>
+</body>
+</html>

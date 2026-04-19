@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Ni Wakati Sports | Admin Dashboard</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #f0f2f5;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 1rem;
+    }
+
+    /* main container */
+    .app-container {
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* cards & panels */
+    .card {
+      background: white;
+      border-radius: 28px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05), 0 4px 8px rgba(0, 0, 0, 0.02);
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    .card-header {
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid #eef2f6;
+      background: #ffffff;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .card-header h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #1e2a3a, #0f2b3d);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.3px;
+    }
+
+    .card-body {
+      padding: 2rem;
+    }
+
+    /* login specific */
+    .login-wrapper {
+      max-width: 460px;
+      margin: 2rem auto;
+    }
+
+    .input-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      font-weight: 500;
+      color: #1e2f3e;
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1px solid #cfdfed;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      background: #ffffff;
+      transition: 0.2s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #2c7da0;
+      box-shadow: 0 0 0 3px rgba(44, 125, 160, 0.2);
+    }
+
+    button {
+      background: #1f5068;
+      color: white;
+      border: none;
+      padding: 0.85rem 1.6rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    button:hover {
+      background: #0f3b4f;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+    }
+
+    button.secondary {
+      background: #eef2f9;
+      color: #1f5068;
+      border: 1px solid #cbdde9;
+    }
+
+    button.secondary:hover {
+      background: #e2e9f2;
+    }
+
+    button.danger {
+      background: #b91c1c;
+    }
+
+    button.danger:hover {
+      background: #991b1b;
+    }
+
+    .message {
+      padding: 0.8rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      margin-top: 1rem;
+      background: #fef9e3;
+      color: #b45309;
+    }
+
+    .success-message {
+      background: #e0f2e9;
+      color: #0a5c3e;
+    }
+
+    /* table styles */
+    .table-responsive {
+      overflow-x: auto;
+      border-radius: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 1rem 1rem;
+      border-bottom: 1px solid #e9edf2;
+    }
+
+    th {
+      background: #f8fafd;
+      font-weight: 600;
+      color: #1f3b4a;
+    }
+
+    tr:hover {
+      background: #fafcff;
+    }
+
+    .highlight {
+      animation: fadeHighlight 2s ease-out;
+      background-color: #e6f7ff;
+    }
+
+    @keyframes fadeHighlight {
+      0% { background-color: #b9e2fa; }
+      100% { background-color: transparent; }
+    }
+
+    /* toolbar */
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 1.8rem;
+      align-items: center;
+    }
+
+    .temp-key-area {
+      background: #f8fafc;
+      border-radius: 24px;
+      padding: 0.8rem 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1.5rem;
+      border: 1px solid #e2edf2;
+    }
+
+    .temp-key-area input {
+      flex: 2;
+      min-width: 200px;
+      background: #fff;
+    }
+
+    .badge {
+      background: #eef2ff;
+      padding: 0.25rem 0.75rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #1e3a8a;
+    }
+
+    hr {
+      margin: 1rem 0;
+      border: none;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .editor-section {
+      margin-top: 2rem;
+      border-top: 2px solid #e9edf2;
+      padding-top: 1.5rem;
+    }
+
+    textarea {
+      min-height: 220px;
+      resize: vertical;
+      font-family: monospace;
+    }
+
+    .flex-between {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.75rem;
+      color: #6c86a3;
+    }
+
+    @media (max-width: 700px) {
+      .card-body {
+        padding: 1.5rem;
+      }
+      .card-header {
+        padding: 1rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="app-container">
+  <!-- LOGIN SECTION -->
+  <div id="login-section" class="login-wrapper">
+    <div class="card">
+      <div class="card-header">
+        <h2>🔐 Admin Access</h2>
+      </div>
+      <div class="card-body">
+        <div class="input-group">
+          <label>🔑 Password or Temporary Key (TEMP-xxxx)</label>
+          <input type="password" id="admin-key" placeholder="Admin password or TEMP-..." autocomplete="off">
+        </div>
+        <button id="login-btn" style="width:100%">Login → Dashboard</button>
+        <div id="login-message" class="message" style="display: none;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD (HIDDEN INITIALLY) -->
+  <div id="dashboard" style="display: none;">
+    <div class="card">
+      <div class="card-header">
+        <h2>📊 Ni Wakati Sports · Control Center</h2>
+        <div class="flex-between" style="gap:12px;">
+          <span id="session-badge" class="badge">👑 Full Admin</span>
+          <button id="logout-btn" class="secondary">🚪 Logout</button>
+        </div>
+      </div>
+      <div class="card-body">
+
+        <!-- Temp Key Generator & CSV Export -->
+        <div class="temp-key-area">
+          <span style="font-weight:500;">🔐 Temporary Key Generator:</span>
+          <input type="text" id="newTempKey" placeholder="New temp key will appear here" readonly>
+          <button id="generateTempKeyBtn">✨ Generate TEMP Key & Copy</button>
+          <button id="exportCsvBtn" class="secondary">📎 Export CSV</button>
+        </div>
+
+        <!-- Subscribers Table -->
+        <div class="flex-between" style="margin-bottom: 0.8rem;">
+          <h3>📬 Subscribers List <span style="font-size:0.8rem; font-weight:normal;">(auto-refresh every 30s)</span></h3>
+        </div>
+        <div class="table-responsive">
+          <table id="subscribersTable">
+            <thead>
+              <tr><th>Email Address</th><th>Subscribed On</th><th>Actions</th></tr>
+            </thead>
+            <tbody id="subscribersTableBody">
+              <tr><td colspan="3" style="text-align:center;">Loading subscribers...</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Page Content Editor Section -->
+        <div class="editor-section">
+          <h3>📄 Dynamic Page Content Editor</h3>
+          <p style="font-size:0.85rem; color:#5a6e7c; margin-bottom: 1rem;">Edit homepage or about content — changes reflect instantly on frontend.</p>
+          <div class="toolbar">
+            <select id="pageSelect" style="width: auto; min-width: 180px;">
+              <option value="home">🏠 Home Page</option>
+              <option value="about">📖 About Page</option>
+            </select>
+            <button id="savePageBtn" style="background:#2b6e4e;">💾 Save Changes</button>
+            <span id="saveMessage" style="font-size:0.85rem; color:#0e7c32;"></span>
+          </div>
+          <div class="input-group">
+            <label>📌 Page Title</label>
+            <input type="text" id="pageTitle" placeholder="e.g. Welcome to Ni Wakati Sports">
+          </div>
+          <div class="input-group">
+            <label>✍️ Page Body (HTML supported)</label>
+            <textarea id="pageBody" placeholder="Write full content here..."></textarea>
+          </div>
+          <div class="badge" style="background:#eef2fa;">✅ Changes are saved to the server and available via API</div>
+        </div>
+        <footer>⚡ Secure admin panel • Temporary keys are read-only • Full admin required for deletions & CSV</footer>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ------------------------------
+  // 🌍 PRODUCTION API BASE URL (as provided)
+  // ------------------------------
+  const API_BASE_URL = "https://ni-wakati-sports-1.onrender.com/api/v1";
+
+  // --- ELEMENTS ---
+  const loginSection = document.getElementById("login-section");
+  const dashboard = document.getElementById("dashboard");
+  const loginBtn = document.getElementById("login-btn");
+  const logoutBtn = document.getElementById("logout-btn");
+  const adminKeyInput = document.getElementById("admin-key");
+  const loginMessage = document.getElementById("login-message");
+  const subscribersTableBody = document.querySelector("#subscribersTable tbody");
+  const exportBtn = document.getElementById("exportCsvBtn");
+  const generateTempKeyBtn = document.getElementById("generateTempKeyBtn");
+  const newTempKeyInput = document.getElementById("newTempKey");
+  const sessionBadge = document.getElementById("session-badge");
+
+  // Page Editor Elements
+  const pageSelect = document.getElementById("pageSelect");
+  const pageTitle = document.getElementById("pageTitle");
+  const pageBody = document.getElementById("pageBody");
+  const savePageBtn = document.getElementById("savePageBtn");
+  const saveMessage = document.getElementById("saveMessage");
+
+  // -----------------------------
+  // 🔐 JWT UTIL
+  // -----------------------------
+  function isTokenExpired(token) {
+    try {
+      const payload = JSON.parse(atob(token.split(".")[1]));
+      return payload.exp * 1000 < Date.now();
+    } catch {
+      return true;
+    }
+  }
+
+  function getTokenPayload(token) {
+    try {
+      return JSON.parse(atob(token.split(".")[1]));
+    } catch {
+      return null;
+    }
+  }
+
+  // Helper to update session badge & UI based on token
+  function updateAdminUIFromToken() {
+    const token = localStorage.getItem("adminToken");
+    if (!token || isTokenExpired(token)) {
+      sessionBadge.textContent = "⚠️ Session expired";
+      return;
+    }
+    const payload = getTokenPayload(token);
+    if (payload?.temp === true) {
+      sessionBadge.innerHTML = "🔒 TEMP Admin (Read-Only)";
+      sessionBadge.style.background = "#fff3e0";
+      sessionBadge.style.color = "#b85c00";
+    } else {
+      sessionBadge.innerHTML = "👑 Full Admin Access";
+      sessionBadge.style.background = "#e0f0fa";
+      sessionBadge.style.color = "#0a4b6e";
+    }
+  }
+
+  // Force logout helper
+  function forceLogout() {
+    localStorage.removeItem("adminToken");
+    loginSection.style.display = "block";
+    dashboard.style.display = "none";
+    loginMessage.textContent = "Session expired. Please login again.";
+    loginMessage.style.display = "block";
+    adminKeyInput.value = "";
+    if (autoRefreshInterval) clearInterval(autoRefreshInterval);
+    autoRefreshInterval = null;
+    // Reset table body
+    subscribersTableBody.innerHTML = '<tr><td colspan="3">Login required</td></tr>';
+  }
+
+  // -----------------------------
+  // 🔑 LOGIN
+  // -----------------------------
+  loginBtn.addEventListener("click", async () => {
+    const keyOrPassword = adminKeyInput.value.trim();
+    if (!keyOrPassword) {
+      loginMessage.textContent = "Password or key required";
+      loginMessage.style.display = "block";
+      return;
+    }
+    loginMessage.style.display = "block";
+    loginMessage.textContent = "Authenticating...";
+    try {
+      const isTemp = keyOrPassword.startsWith("TEMP-");
+      const url = isTemp
+        ? `${API_BASE_URL}/admin/login-temp`
+        : `${API_BASE_URL}/admin/login`;
+
+      const body = isTemp
+        ? JSON.stringify({ key: keyOrPassword })
+        : JSON.stringify({ email: "flexxngire01@gmail.com", password: keyOrPassword });
+
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body,
+      });
+
+      let data = null;
+      const contentType = res.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        data = await res.json();
+      } else {
+        throw new Error("Server did not return JSON. Status: " + res.status);
+      }
+
+      if (!res.ok) {
+        loginMessage.textContent = data.message || "Login failed";
+        return;
+      }
+
+      localStorage.setItem("adminToken", data.token);
+      adminKeyInput.value = "";
+      loginMessage.textContent = "";
+
+      const payload = getTokenPayload(data.token);
+      if (payload?.temp) {
+        loginMessage.textContent = "⚠️ Temporary admin access (read-only)";
+        loginMessage.style.display = "block";
+        setTimeout(() => { loginMessage.style.display = "none"; }, 3000);
+      } else {
+        loginMessage.style.display = "none";
+      }
+
+      // load dashboard
+      await loadSubscribers();
+      await loadPageContent(pageSelect.value);
+      updateAdminUIFromToken();
+
+      // start auto refresh
+      if (autoRefreshInterval) clearInterval(autoRefreshInterval);
+      autoRefreshInterval = setInterval(loadSubscribers, 30000);
+    } catch (err) {
+      console.error(err);
+      loginMessage.textContent = "Server error or network issue";
+      loginMessage.style.display = "block";
+    }
+  });
+
+  logoutBtn.addEventListener("click", () => {
+    forceLogout();
+    if (autoRefreshInterval) clearInterval(autoRefreshInterval);
+    autoRefreshInterval = null;
+  });
+
+  // -----------------------------
+  // 📥 LOAD SUBSCRIBERS
+  // -----------------------------
+  let previousIds = new Set();
+  let autoRefreshInterval = null;
+
+  async function loadSubscribers() {
+    const token = localStorage.getItem("adminToken");
+    if (!token || isTokenExpired(token)) {
+      forceLogout();
+      return;
+    }
+
+    try {
+      const payload = getTokenPayload(token);
+      const isTempAdmin = payload?.temp === true;
+
+      const res = await fetch(`${API_BASE_URL}/newsletter/subscribers`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (res.status === 401 || res.status === 403) return forceLogout();
+      if (!res.ok) throw new Error("Failed to load subscribers");
+
+      const data = await res.json();
+      const newIds = new Set(data.subscribers.map(s => s._id));
+
+      subscribersTableBody.innerHTML = "";
+      if (!data.subscribers.length) {
+        subscribersTableBody.innerHTML = '<tr><td colspan="3">No subscribers found.</td></tr>';
+      }
+      data.subscribers.forEach(sub => {
+        const tr = document.createElement("tr");
+        const deleteBtn = isTempAdmin
+          ? `<button class="secondary" disabled style="opacity:0.5; cursor:not-allowed;">🔒 Delete</button>`
+          : `<button onclick="deleteSubscriber('${sub._id}')" class="danger" style="background:#b91c1c; padding:0.4rem 1rem;">Delete</button>`;
+        tr.innerHTML = `
+          <td style="word-break:break-all;">${escapeHtml(sub.email)}</td>
+          <td>${new Date(sub.createdAt).toLocaleString()}</td>
+          <td>${deleteBtn}</td>
+        `;
+        if (!previousIds.has(sub._id)) tr.classList.add("highlight");
+        subscribersTableBody.appendChild(tr);
+      });
+
+      previousIds = newIds;
+      loginSection.style.display = "none";
+      dashboard.style.display = "block";
+      updateAdminUIFromToken();
+
+      if (isTempAdmin) {
+        const msgDiv = document.getElementById("login-message");
+        if (msgDiv && dashboard.style.display === "block") {
+          // show temp note in dashboard small banner
+          let tempNote = document.querySelector(".temp-note");
+          if (!tempNote) {
+            const note = document.createElement("div");
+            note.className = "message success-message temp-note";
+            note.style.marginTop = "0.5rem";
+            note.style.marginBottom = "1rem";
+            note.innerHTML = "⚠️ Temporary admin mode: deletions & CSV export are disabled.";
+            document.querySelector(".temp-key-area").after(note);
+          }
+        }
+      } else {
+        const existingNote = document.querySelector(".temp-note");
+        if (existingNote) existingNote.remove();
+      }
+    } catch (err) {
+      console.error(err);
+      forceLogout();
+    }
+  }
+
+  // Helper to escape HTML
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/[&<>]/g, function(m) {
+      if (m === '&') return '&amp;';
+      if (m === '<') return '&lt;';
+      if (m === '>') return '&gt;';
+      return m;
+    }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+      return c;
+    });
+  }
+
+  // 🗑️ DELETE SUBSCRIBER (global for onclick)
+  window.deleteSubscriber = async function(id) {
+    const token = localStorage.getItem("adminToken");
+    if (!token || isTokenExpired(token)) return forceLogout();
+
+    const payload = getTokenPayload(token);
+    if (payload?.temp) {
+      alert("Delete disabled for temporary admin access");
+      return;
+    }
+
+    if (!confirm("Are you sure you want to delete this subscriber?")) return;
+
+    try {
+      const res = await fetch(`${API_BASE_URL}/newsletter/subscribers/${id}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (res.status === 401 || res.status === 403) return forceLogout();
+      const data = await res.json();
+      alert(data.message || "Deleted successfully");
+      loadSubscribers();
+    } catch (err) {
+      console.error(err);
+      alert("Failed to delete subscriber");
+    }
+  };
+
+  // 📥 EXPORT CSV
+  exportBtn.addEventListener("click", async () => {
+    const token = localStorage.getItem("adminToken");
+    if (!token || isTokenExpired(token)) return forceLogout();
+
+    const payload = getTokenPayload(token);
+    if (payload?.temp) {
+      alert("CSV export disabled for temporary admin access");
+      return;
+    }
+
+    try {
+      const res = await fetch(`${API_BASE_URL}/admin/newsletter/export`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (!res.ok) throw new Error("Failed to download CSV");
+
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "subscribers.csv";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error(err);
+      alert("CSV export failed");
+    }
+  });
+
+  // 🆕 GENERATE TEMP KEY
+  generateTempKeyBtn.addEventListener("click", async () => {
+    const token = localStorage.getItem("adminToken");
+    if (!token || isTokenExpired(token)) return forceLogout();
+
+    const payload = getTokenPayload(token);
+    if (payload?.temp) {
+      alert("Temporary admins cannot generate TEMP keys");
+      return;
+    }
+
+    try {
+      const res = await fetch(`${API_BASE_URL}/admin/generate-temp-key`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.message || "Failed to generate TEMP key");
+
+      newTempKeyInput.value = data.key;
+      navigator.clipboard.writeText(data.key);
+      alert("✅ New TEMP key generated and copied to clipboard!");
+    } catch (err) {
+      console.error(err);
+      alert(err.message || "Failed to generate TEMP key");
+    }
+  });
+
+  // 🌐 PAGE CONTENT EDITOR
+  async function loadPageContent(page) {
+    try {
+      const res = await fetch(`${API_BASE_URL}/content/${page}`);
+      if (!res.ok) {
+        // if 404, just empty fields
+        pageTitle.value = "";
+        pageBody.value = "";
+        return;
+      }
+      const data = await res.json();
+      pageTitle.value = data?.data?.title || "";
+      pageBody.value = data?.data?.body || "";
+    } catch (err) {
+      console.error(err);
+      // fail silently but keep editor usable
+      pageTitle.value = "";
+      pageBody.value = "";
+    }
+  }
+
+  savePageBtn.addEventListener("click", async () => {
+    const token = localStorage.getItem("adminToken");
+    if (!token || isTokenExpired(token)) return forceLogout();
+
+    // also prevent saving if temp (but temp can view, but we allow? Actually backend might restrict, but we mirror: temp read-only)
+    const payload = getTokenPayload(token);
+    if (payload?.temp) {
+      alert("Temporary admin cannot edit page content (read-only mode)");
+      return;
+    }
+
+    const page = pageSelect.value;
+    const title = pageTitle.value;
+    const body = pageBody.value;
+
+    try {
+      const res = await fetch(`${API_BASE_URL}/content/${page}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ title, body }),
+      });
+
+      if (!res.ok) {
+        const err = await res.json();
+        return alert(`Error: ${err.message || "Update failed"}`);
+      }
+
+      saveMessage.textContent = "✅ Content updated successfully!";
+      saveMessage.style.color = "#0e7c32";
+      setTimeout(() => (saveMessage.textContent = ""), 3000);
+    } catch (err) {
+      console.error(err);
+      alert("Failed to save content");
+    }
+  });
+
+  pageSelect.addEventListener("change", () => loadPageContent(pageSelect.value));
+
+  // Auto restore session on page load
+  window.addEventListener("DOMContentLoaded", async () => {
+    const token = localStorage.getItem("adminToken");
+    if (token && !isTokenExpired(token)) {
+      try {
+        await loadSubscribers();
+        await loadPageContent(pageSelect.value);
+        updateAdminUIFromToken();
+        if (autoRefreshInterval) clearInterval(autoRefreshInterval);
+        autoRefreshInterval = setInterval(loadSubscribers, 30000);
+      } catch (e) {
+        forceLogout();
+      }
+    } else {
+      // ensure login visible
+      loginSection.style.display = "block";
+      dashboard.style.display = "none";
+      if (token && isTokenExpired(token)) localStorage.removeItem("adminToken");
+    }
+    // additional styling for message
+    if (loginMessage) loginMessage.style.display = "none";
+  });
+</script>
+</body>
+</html>

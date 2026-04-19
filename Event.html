@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>EVENT SHOWCASE | 2 Columns × 4 Rows</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/SplitText.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --base-100: #fff;
+            --base-200: #888;
+            --base-300: #000;
+            --grid-gap: 1.5rem;
+            --primary-green: #2c7a2c;
+        }
+
+        body {
+            background: var(--base-300);
+            overflow-x: hidden;
+            font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+        }
+
+        /* Typography */
+        .event-number {
+            font-family: "Geist Mono", monospace;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--base-200);
+            letter-spacing: 1px;
+        }
+
+        .event-title {
+            font-family: "Barlow Condensed", sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+            margin: 0.5rem 0 0.3rem 0;
+        }
+
+        .event-subtitle {
+            font-family: "Geist Mono", monospace;
+            font-size: 0.7rem;
+            color: var(--base-200);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Preloader backdrop */
+        .preloader-backdrop {
+            position: fixed;
+            width: 100%;
+            height: 100svh;
+            background-color: var(--base-100);
+            color: var(--base-200);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 0;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .pb-row {
+            width: 100%;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Main preloader */
+        .preloader {
+            position: fixed;
+            width: 100%;
+            height: 100svh;
+            background-color: var(--base-300);
+            color: var(--base-100);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+            will-change: transform, clip-path;
+            z-index: 2;
+            top: 0;
+            left: 0;
+        }
+
+        .p-row {
+            width: 100%;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .preloader-btn-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20rem;
+            height: 20rem;
+            cursor: pointer;
+        }
+
+        .pbc-svg-strokes,
+        #pbc-logo,
+        #pbc-label,
+        #pbc-outro-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #pbc-logo {
+            width: 11rem;
+            height: 11rem;
+            object-fit: cover;
+            border-radius: 50%;
+            background: #1a1a1a;
+            pointer-events: none;
+        }
+
+        #pbc-label,
+        #pbc-outro-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-family: "Geist Mono", monospace;
+            font-weight: 500;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        #pbc-outro-label {
+            opacity: 0;
+        }
+
+        .pbc-svg-strokes,
+        .pbc-svg-strokes svg {
+            width: 100%;
+            height: 100%;
+            will-change: transform;
+        }
+
+        /* ========== DESKTOP NAVBAR STYLES ========== */
+        .event-navbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10000;
+            width: auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(16px);
+            border-radius: 60px;
+            padding: 0 10px;
+            border: 1px solid rgba(0,0,0,0.1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            pointer-events: auto;
+        }
+
+        .event-navbar ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            height: 52px;
+            padding: 0 8px;
+            gap: 2px;
+        }
+
+        .event-navbar ul li {
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .event-navbar ul li a {
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0 18px;
+            color: #1a1a1a;
+            border-radius: 40px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            height: 38px;
+            white-space: nowrap;
+        }
+
+        .event-navbar ul li a:hover {
+            background: var(--primary-green);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* ===== MOBILE HAMBURGER MENU ===== */
+        .mobile-menu-btn {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10005;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            pointer-events: auto;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .mobile-menu-btn span {
+            font-size: 24px;
+            color: #1a1a1a;
+            font-weight: bold;
+        }
+
+        .mobile-menu-btn:hover {
+            background: var(--primary-green);
+        }
+
+        .mobile-menu-btn:hover span {
+            color: white;
+        }
+
+        .mobile-nav-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 10004;
+            padding: 80px 20px 30px;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: -5px 0 30px rgba(0,0,0,0.5);
+            border-left: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .mobile-nav-overlay.active {
+            right: 0;
+        }
+
+        .mobile-nav-overlay ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .mobile-nav-overlay ul li a {
+            display: block;
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .mobile-nav-overlay ul li a:hover {
+            background: var(--primary-green);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .close-menu-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 24px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .close-menu-btn:hover {
+            background: var(--primary-green);
+            transform: rotate(90deg);
+        }
+
+        .menu-overlay-bg {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 10003;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .menu-overlay-bg.active {
+            display: block;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* ========== GRID SECTION ========== */
+        .grid-section {
+            position: relative;
+            width: 100%;
+            min-height: 100svh;
+            background-color: var(--base-300);
+            color: var(--base-100);
+            transform: scale(0.75);
+            will-change: transform;
+            z-index: 1;
+            padding: 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .grid-section .preloader-revealer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--base-100);
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+            will-change: clip-path;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Subheading top left */
+        .subheading {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 3rem;
+            text-align: left;
+        }
+
+        .subheading h1 {
+            font-family: "Barlow Condensed", sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+        }
+
+        .subheading p {
+            font-family: "Geist Mono", monospace;
+            font-size: 0.7rem;
+            color: var(--base-200);
+            margin-top: 0.5rem;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: stretch;
+        }
+
+        /* Each card takes equal width (2 columns per row) */
+        .event-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
+            padding: 0;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .event-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Text overlay on top of image */
+        .event-number,
+        .event-title,
+        .event-subtitle {
+            position: relative;
+            z-index: 1;
+            padding: 0 1.5rem;
+        }
+
+        .event-number {
+            padding-top: 1.5rem;
+        }
+
+        .event-subtitle {
+            padding-bottom: 1.5rem;
+            margin-top: auto;
+        }
+
+        .event-title {
+            margin: 0.5rem 0 0.3rem 0;
+        }
+
+        .event-card:hover {
+            background: rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px);
+        }
+
+        .event-card:hover .event-image img {
+            transform: scale(1.05);
+            transition: transform 0.5s ease;
+        }
+
+        /* Word animation classes */
+        .word {
+            display: inline-block;
+            transform: translateY(100%);
+            will-change: transform;
+        }
+
+        .line {
+            display: block;
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .event-navbar {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .mobile-nav-overlay {
+                display: block;
+            }
+            
+            .menu-overlay-bg {
+                display: block;
+            }
+            
+            .grid-section {
+                padding: 1.5rem;
+            }
+            .grid-row {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .event-card .event-title {
+                font-size: 1.2rem;
+            }
+            .subheading {
+                margin-bottom: 1.5rem;
+            }
+        }
+/* Target only text inside event cards */
+.event-card .event-number,
+.event-card .event-title,
+.event-card .event-subtitle {
+    color: #ffffff;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+    font-weight: 600;
+}
+        @media (max-width: 1000px) {
+            .pb-row .pb-col:nth-child(1),
+            .pb-row .pb-col:nth-child(2),
+            .pb-row .pb-col:nth-child(5) {
+                display: none;
+            }
+        }
+
+        /* MOBILE VIEW */
+        @media (max-width: 768px) {
+            .grid-section {
+                padding: 1rem;
+                min-height: auto;
+                justify-content: flex-start;
+            }
+
+            .subheading {
+                margin-bottom: 1.5rem;
+                padding: 0 0.5rem;
+            }
+
+            .subheading h1 {
+                font-size: 1.8rem;
+            }
+
+            .subheading p {
+                font-size: 0.6rem;
+            }
+
+            .grid-container {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+            }
+
+            .grid-row {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+            }
+
+            .event-card {
+                min-height: 300px;
+                width: 100%;
+            }
+
+            .event-title {
+                font-size: 1.3rem;
+            }
+
+            .event-number {
+                font-size: 0.8rem;
+            }
+
+            .event-subtitle {
+                font-size: 0.65rem;
+            }
+
+            .event-number,
+            .event-title,
+            .event-subtitle {
+                padding: 0 1rem;
+            }
+
+            .event-number {
+                padding-top: 1rem;
+            }
+
+            .event-subtitle {
+                padding-bottom: 1rem;
+            }
+
+            .preloader-btn-container {
+                width: 15rem;
+                height: 15rem;
+            }
+
+            #pbc-logo {
+                width: 8rem;
+                height: 8rem;
+            }
+
+            #pbc-label,
+            #pbc-outro-label {
+                font-size: 0.7rem;
+                white-space: nowrap;
+            }
+
+            .pbc-svg-strokes svg {
+                width: 240px;
+                height: 240px;
+            }
+
+            .p-row, .pb-row {
+                padding: 1rem;
+                font-size: 0.8rem;
+            }
+
+            .p-row .p-col {
+                font-size: 0.7rem;
+            }
+        }
+
+        /* Small phones (under 480px) */
+        @media (max-width: 480px) {
+            .grid-section {
+                padding: 0.75rem;
+            }
+
+            .event-card {
+                min-height: 260px;
+            }
+
+            .event-title {
+                font-size: 1.1rem;
+            }
+
+            .event-number {
+                font-size: 0.7rem;
+            }
+
+            .event-subtitle {
+                font-size: 0.55rem;
+            }
+
+            .subheading h1 {
+                font-size: 1.5rem;
+            }
+
+            .preloader-btn-container {
+                width: 12rem;
+                height: 12rem;
+            }
+
+            #pbc-logo {
+                width: 6.5rem;
+                height: 6.5rem;
+            }
+
+            .pbc-svg-strokes svg {
+                width: 200px;
+                height: 200px;
+            }
+
+            #pbc-label,
+            #pbc-outro-label {
+                font-size: 0.6rem;
+            }
+
+            .p-row, .pb-row {
+                padding: 0.75rem;
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- DESKTOP NAVBAR -->
+    <div class="event-navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="Event.html">Events</a></li>
+            <li><a href="insights.html">Insights</a></li>
+            <li><a href="involved.html">Get Involved</a></li>
+        </ul>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <div class="mobile-menu-btn" id="mobileMenuBtn">
+        <span>☰</span>
+    </div>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay">
+        <div class="close-menu-btn" id="closeMenuBtn">✕</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="Event.html">Events</a></li>
+            <li><a href="insights.html">Insights</a></li>
+            <li><a href="involved.html">Get Involved</a></li>
+        </ul>
+    </div>
+
+    <!-- Overlay Background -->
+    <div class="menu-overlay-bg" id="menuOverlayBg"></div>
+
+    <!-- BACKDROP -->
+    <div class="preloader-backdrop">
+        <div class="pb-row">
+            <div class="pb-col"><p>EVENT</p></div>
+            <div class="pb-col"><p>SHOWCASE</p></div>
+            <div class="pb-col"><p>2x4</p></div>
+            <div class="pb-col"><p>GRID</p></div>
+            <div class="pb-col"><p>2025</p></div>
+        </div>
+        <div class="pb-row">
+            <div class="pb-col"><p>curated</p></div>
+            <div class="pb-col"><p>experiences</p></div>
+        </div>
+        <div class="pb-row">
+            <div class="pb-col"><p>select</p></div>
+            <div class="pb-col"><p>↓</p></div>
+        </div>
+    </div>
+
+    <!-- PRELOADER -->
+    <div class="preloader">
+        <div class="p-row">
+            <p>event_showcase</p>
+        </div>
+        <div class="p-row">
+            <div class="p-col">
+                <div class="p-sub-col"><p>unlock</p></div>
+                <div class="p-sub-col"><p>grid</p></div>
+            </div>
+            <div class="p-col"><p>v.01</p></div>
+        </div>
+
+        <div class="preloader-btn-container">
+            <img id="pbc-logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23333'/%3E%3Ctext x='50' y='67' text-anchor='middle' fill='white' font-size='40' font-family='monospace'%3E★%3C/text%3E%3C/svg%3E" alt="logo">
+            <p id="pbc-label">Enter</p>
+            <p id="pbc-outro-label">Access Granted</p>
+            <div class="pbc-svg-strokes">
+                <svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320">
+                    <circle class="stroke-track" cx="160" cy="160" r="155" stroke="#2b2b2b" stroke-width="2" stroke-dasharray="974" stroke-dashoffset="0" fill="none" />
+                    <circle class="stroke-progress" cx="160" cy="160" r="155" stroke="#ffffff" stroke-width="2" stroke-dasharray="974" stroke-dashoffset="974" fill="none" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2 COLUMNS × 4 ROWS GRID -->
+    <section class="grid-section">
+        <div class="preloader-revealer"></div>
+        
+        <div class="subheading">
+            <h1>EVENT SHOWCASE</h1>
+            <p>JOIN US NOW </p>
+        </div>
+
+        <div class="grid-container" id="gridContainer">
+            <!-- Rows will be injected here dynamically -->
+        </div>
+    </section>
+
+<script>
+    (function() {
+        const allEvents = [
+            {
+                number: "01",
+                title: "Football Tournament",
+                subtitle: "Nairobi Youth Football Tournament",
+                link: "/pages/event-01.html",
+                image: "/assets/img/1.jpg"
+            },
+            {
+                number: "02",
+                title: "Women in Sports",
+                subtitle: "Women in Sports Leadership Workshop",
+                link: "/pages/event-02.html",
+                image: "/assets/img/gg.jpg"
+            },
+            {
+                number: "03",
+                title: "Tennis Challenge",
+                subtitle: "East Africa Basketball Challenge",
+                link: "/pages/event-03.html",
+                image: "/assets/img/5.jpg"
+            },
+            {
+                number: "04",
+                title: "Sports Festival",
+                subtitle: "Emerging Sports Festival",
+                link: "/pages/event-04.html",
+                image: "/assets/img/7.jpg"
+            },
+            {
+                number: "05",
+                title: "Sports Medicine",
+                subtitle: "Sports Medicine Conference",
+                link: "/pages/event-05.html",
+                image: "/assets/img/new.png"
+            },
+            {
+                number: "06",
+                title: "Tourism Summi",
+                subtitle: " Sports Tourism Summit",
+                link: "/pages/event-06.html",
+                image: "/assets/img/6.jpg"
+            },
+            {
+                number: "07",
+                title: "E-Sports",
+                subtitle: "E-Sports",
+                link: "/pages/event-07.html",
+                image: "/assets/img/A.jpg"
+            },
+            {
+                number: "08",
+                title: "Parkour & Freerunning",
+                subtitle: "Parkour & Freerunning",
+                link: "/pages/event-08.html",
+                image: "/assets/img/8.jpg"
+            }
+        ];
+
+        const gridContainer = document.getElementById("gridContainer");
+        const preloaderDiv = document.querySelector(".preloader");
+        const sectionRevealer = document.querySelector(".preloader-revealer");
+        const gridSection = document.querySelector(".grid-section");
+        const preloaderBtnContainer = document.querySelector(".preloader-btn-container");
+        const btnOutlineTrack = document.querySelector(".stroke-track");
+        const btnOutlineProgress = document.querySelector(".stroke-progress");
+        const pbcLogo = document.querySelector("#pbc-logo");
+        const pbcLabel = document.querySelector("#pbc-label");
+        const pbcOutroLabel = document.querySelector("#pbc-outro-label");
+        
+        let preloaderComplete = false;
+        let svgPathLength = 974;
+        let isExiting = false;
+
+        function navigateTo(url, eventTitle) {
+            console.log("Navigating to:", url, "Event:", eventTitle);
+            if (!url || url === "#") {
+                alert(`✨ Opening: ${eventTitle}\n(Would navigate to ${url})`);
+                return;
+            }
+            window.location.href = url;
+        }
+
+        function createCard(event) {
+            const card = document.createElement("div");
+            card.className = "event-card";
+            card.setAttribute("data-link", event.link);
+            card.setAttribute("data-title", event.title);
+            
+            card.innerHTML = `
+                <div class="event-image">
+                    <img src="${event.image}" alt="${event.title}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Crect fill=\'%23333\' width=\'100\' height=\'100\'/%3E%3Ctext x=\'50\' y=\'67\' text-anchor=\'middle\' fill=\'%23888\' font-size=\'14\' font-family=\'monospace\'%3ENo img%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div class="event-number">${event.number}</div>
+                <div class="event-title">${event.title}</div>
+                <div class="event-subtitle">${event.subtitle}</div>
+            `;
+            
+            card.addEventListener("click", (e) => {
+                e.stopPropagation();
+                console.log("Card clicked! preloaderComplete =", preloaderComplete, "isExiting =", isExiting);
+                
+                // Allow clicks only if preloader is complete AND we're not in the middle of exiting
+                if (!preloaderComplete) {
+                    console.log("Please wait for preloader to complete first");
+                    return;
+                }
+                
+                if (isExiting) {
+                    console.log("Animation in progress, please wait...");
+                    return;
+                }
+                
+                const targetLink = card.getAttribute("data-link");
+                const title = card.getAttribute("data-title");
+                navigateTo(targetLink, title);
+            });
+            return card;
+        }
+
+        function buildGrid() {
+            if (!gridContainer) return;
+            gridContainer.innerHTML = "";
+            
+            for (let i = 0; i < allEvents.length; i += 2) {
+                const row = document.createElement("div");
+                row.className = "grid-row";
+                
+                const card1 = createCard(allEvents[i]);
+                const card2 = createCard(allEvents[i + 1]);
+                
+                row.appendChild(card1);
+                row.appendChild(card2);
+                gridContainer.appendChild(row);
+            }
+            
+            // Simple fade-in for cards instead of SplitText
+            const cards = document.querySelectorAll(".event-card");
+            gsap.set(cards, { opacity: 0 });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            console.log("DOM loaded, starting...");
+            
+            if (typeof gsap !== 'undefined') {
+                console.log("GSAP loaded");
+            } else {
+                console.error("GSAP not loaded!");
+            }
+            
+            buildGrid();
+            
+            // Set initial state
+            gsap.set(gridSection, { scale: 0.75 });
+            if (sectionRevealer) gsap.set(sectionRevealer, { clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)" });
+            
+            // Simple intro animation
+            const introTl = gsap.timeline({ delay: 0.5 });
+            
+            // Animate the circular button
+            introTl.to(btnOutlineTrack, { strokeDashoffset: 0, duration: 1.5, ease: "power2.out" }, 0)
+                .to(".pbc-svg-strokes svg", { rotation: 360, duration: 1.5, ease: "power2.out", transformOrigin: "center center" }, 0)
+                .to(btnOutlineProgress, { strokeDashoffset: 0, duration: 1.5, ease: "power2.out" }, 0)
+                .to(pbcLogo, { opacity: 0, duration: 0.5, ease: "power1.out" }, 1.2)
+                .to(pbcLabel, { opacity: 0, duration: 0.3 }, 1.5)
+                .call(() => {
+                    preloaderComplete = true;
+                    console.log("✅ PRELOADER COMPLETE! Cards are now clickable!");
+                    console.log("🎯 Click any event card to navigate!");
+                }, null, 1.8);
+            
+            // Handle Enter button click
+            if (preloaderBtnContainer) {
+                preloaderBtnContainer.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    console.log("Enter button clicked, starting exit animation...");
+                    
+                    if (isExiting) return;
+                    isExiting = true;
+                    
+                    const exitTl = gsap.timeline();
+                    
+                    exitTl.to(preloaderDiv, { scale: 0.8, duration: 0.8, ease: "power2.in", transformOrigin: "center center" }, 0)
+                        .to([btnOutlineTrack, btnOutlineProgress], { strokeDashoffset: -svgPathLength, duration: 0.8, ease: "power2.in" }, "<")
+                        .to(pbcLabel, { opacity: 0, duration: 0.2 }, 0)
+                        .to(pbcOutroLabel, { opacity: 1, duration: 0.3 }, 0.3)
+                        .to(preloaderDiv, { 
+                            clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)", 
+                            duration: 1, 
+                            ease: "power2.inOut",
+                            onComplete: () => {
+                                if (preloaderDiv) preloaderDiv.style.display = "none";
+                                if (sectionRevealer) sectionRevealer.style.display = "none";
+                                // IMPORTANT: Reset isExiting after animation completes
+                                isExiting = false;
+                                console.log("Exit animation complete! Cards are now ready to click.");
+                            }
+                        }, 0.5)
+                        .to(gridSection, { scale: 1, duration: 0.8, ease: "back.out(0.7)" }, "-=0.5")
+                        .to(".event-card", { opacity: 1, duration: 0.6, stagger: 0.05, ease: "power2.out" }, "-=0.3");
+                });
+            }
+            
+            // Mobile Hamburger Menu Functionality
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+            const closeMenuBtn = document.getElementById('closeMenuBtn');
+            const menuOverlayBg = document.getElementById('menuOverlayBg');
+
+            function openMobileMenu() {
+                mobileNavOverlay.classList.add('active');
+                menuOverlayBg.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMobileMenu() {
+                mobileNavOverlay.classList.remove('active');
+                menuOverlayBg.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', openMobileMenu);
+            }
+
+            if (closeMenuBtn) {
+                closeMenuBtn.addEventListener('click', closeMobileMenu);
+            }
+
+            if (menuOverlayBg) {
+                menuOverlayBg.addEventListener('click', closeMobileMenu);
+            }
+
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-overlay ul li a');
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768 && mobileNavOverlay && mobileNavOverlay.classList.contains('active')) {
+                    closeMobileMenu();
+                }
+            });
+        });
+    })();
+</script>
+</body>
+</html>

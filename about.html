@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>Ni-Wakati Sports Africa | About Us</title>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&family=Manrope:wght@200..800&display=swap");
+        @import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
+
+        /* ===== PRELOADER VARIABLES ===== */
+        :root {
+            --light: #fff;
+            --dark: #000;
+            --gray: #f5f5f5;
+            --dark-gray: #333;
+            --primary-green: #2c7a2c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Manrope", "Poppins", sans-serif;
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* ========== SIMPLE FIXED NAVBAR ========== */
+        .simple-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0.8rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .nav-logo-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .nav-logo-img:hover {
+            transform: scale(1.05);
+            border-color: #2c7a2c;
+        }
+
+        .nav-logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .nav-logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            letter-spacing: -0.5px;
+            font-family: 'Barlow Condensed', sans-serif;
+        }
+
+        .nav-logo-text span {
+            color: #4caf50;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            list-style: none;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            color: #f0f0f0;
+            font-weight: 500;
+            font-size: 1rem;
+            border-radius: 40px;
+            transition: all 0.25s;
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: #2c7a2c;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .dropdown-toggle i {
+            font-size: 0.8rem;
+            transition: transform 0.2s;
+        }
+
+        .dropdown:hover .dropdown-toggle i {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            background: rgba(20, 20, 20, 0.97);
+            backdrop-filter: blur(16px);
+            border-radius: 20px;
+            min-width: 220px;
+            padding: 0.7rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: all 0.25s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 20px 35px rgba(0,0,0,0.3);
+            z-index: 100;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu li {
+            list-style: none;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.7rem 1.8rem;
+            color: #e0e0e0;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .dropdown-menu a:hover {
+            background: #2c7a2c;
+            color: white;
+            padding-left: 2rem;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.8rem;
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .mobile-toggle:hover {
+            background: #2c7a2c;
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 950px) {
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 340px;
+                height: 100vh;
+                background: #0f0f0f;
+                backdrop-filter: blur(24px);
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start;
+                padding: 100px 1.5rem 2rem;
+                gap: 0.8rem;
+                transition: right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+                box-shadow: -5px 0 25px rgba(0,0,0,0.5);
+                border-left: 1px solid rgba(255,255,255,0.1);
+                overflow-y: auto;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-item {
+                width: 100%;
+            }
+
+            .nav-link {
+                display: block;
+                width: 100%;
+                padding: 0.9rem 1rem;
+                font-size: 1.1rem;
+                border-radius: 12px;
+            }
+
+            .dropdown {
+                width: 100%;
+            }
+
+            .dropdown-toggle {
+                justify-content: space-between;
+                width: 100%;
+            }
+
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                background: rgba(255,255,255,0.05);
+                backdrop-filter: none;
+                box-shadow: none;
+                border: none;
+                padding: 0;
+                margin-top: 0.5rem;
+                margin-left: 1rem;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                border-radius: 12px;
+            }
+
+            .dropdown.active .dropdown-menu {
+                max-height: 300px;
+            }
+
+            .dropdown-menu a {
+                padding: 0.7rem 1rem;
+            }
+
+            .dropdown-menu a:hover {
+                padding-left: 1.5rem;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .nav-container {
+                padding: 0.6rem 1rem;
+            }
+            .nav-logo-text {
+                font-size: 1.2rem;
+            }
+            .nav-logo-img {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        /* ===== PRELOADER STYLES ===== */
+        .preloader { 
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100svh;
+            background-color: var(--dark);
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+            will-change: clip-path;
+            overflow: hidden;
+            z-index: 10000;
+        }
+
+        .progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 7px;
+            background-color: var(--light);
+            transform: scaleX(0);
+            transform-origin: left;
+            will-change: transform;
+            z-index: 10;
+        }
+
+        .preloader-images {
+            position: absolute; 
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30rem;
+            height: 30rem;
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+            will-change: clip-path;
+            overflow: hidden;
+            z-index: 5;
+        }
+
+        .preloader-images .img { 
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+            will-change: clip-path;
+            overflow: hidden;
+        }
+
+        .preloader-images .img img { 
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.5);
+            will-change: transform;
+        }
+
+        .preloader-copy {
+            position: absolute;
+            bottom: 5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30%;
+            color: var(--light);
+            z-index: 10;
+            text-align: center;
+        }
+
+        .preloader-copy p {
+            text-transform: uppercase;
+            font-size: 0.81em;
+            font-weight: 550;
+            color: var(--light);
+            font-family: "Manrope", sans-serif;
+        }
+
+        .preloader-header {
+            position: fixed;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: translateY(60svh);
+            transform-origin: top;
+            will-change: transform;
+            z-index: 10001;
+        }
+
+        .preloader-logo {
+            display: block;
+            text-decoration: none;
+        }
+        
+        .preloader-logo img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        /* ===== SCROLL WIPE SECTIONS ===== */
+        section {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            min-height: 100vh;
+            padding: 100px 48px 60px 48px;
+            view-timeline: --section;
+            position: relative;
+            --img-width: 35vmax;
+            --img-height: calc(var(--img-width) * 3 / 4);
+            scroll-margin-top: 80px;
+            overflow: hidden;
+        }
+
+        section:nth-child(1) { background-color: #d4e3d2; z-index: 4; }
+        section:nth-child(2) { background-color: #efcbc5; z-index: 3; }
+        section:nth-child(3) { background-color: #ebe1c6; z-index: 2; }
+        section:nth-child(4) { background-color: #cbd0e2; z-index: 1; }
+        section:nth-child(5) { background-color: #d4c9b8; z-index: 0; }
+        section:nth-child(6) { background-color: #c2b9a8; z-index: -1; }
+        
+        section .img-box {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            right: 48px;
+            width: var(--img-width);
+            height: var(--img-height);
+        }
+
+        section img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: wipe linear both;
+            animation-timeline: --section;
+            --gap: calc((100% - var(--img-height)) / 2);
+            animation-range: exit var(--gap) exit calc(100% - var(--gap));
+        }
+
+        .content {
+            padding-left: 5%;
+            width: 55%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+            overflow-y: auto;
+            max-height: 80vh;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(2px);
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        .content::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .content::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.1);
+            border-radius: 4px;
+        }
+
+        .content::-webkit-scrollbar-thumb {
+            background: rgba(0,0,0,0.3);
+            border-radius: 4px;
+        }
+
+        .content .title {
+            font-size: 2.5em;
+            font-weight: bold;
+            letter-spacing: -0.02em;
+            font-family: "Aboreto", system-ui;
+            line-height: 1.2;
+        }
+
+        .content .subtitle {
+            font-size: 1.1em;
+            font-weight: normal;
+            color: #555;
+            letter-spacing: 0.02em;
+            margin-top: -8px;
+            border-left: 3px solid currentColor;
+            padding-left: 12px;
+        }
+
+        .content .tagline {
+            font-size: 1em;
+            font-weight: 500;
+            color: #3a6b2f;
+            margin-bottom: 5px;
+            font-style: italic;
+        }
+
+        .content .desc {
+            line-height: 1.7;
+            text-wrap: wrap;
+            font-size: 0.9em;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .desc strong {
+            font-size: 1.05em;
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        @keyframes wipe {
+            0% { clip-path: inset(0 0 0 0); }
+            100% { clip-path: inset(0 0 100% 0); }
+        }
+
+        /* ===== FOOTER STYLES ===== */
+        .pact-footer {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            padding: 40px 0 20px;
+            border-top: 1px solid #ffffff;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .newsletter-section {
+            margin-bottom: 40px;
+        }
+
+        .newsletter-title {
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-description {
+            font-size: 0.9rem;
+            color: #999;
+            margin-bottom: 25px;
+            max-width: 700px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 15px;
+            max-width: 500px;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #444;
+            border-radius: 3px;
+            background-color: #222;
+            color: #fff;
+            min-width: 200px;
+        }
+
+        .signup-btn {
+            background-color: #2c7a2c;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 3px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .signup-btn:hover { background-color: #1e5e1e; }
+
+        .footer-divider {
+            border: none;
+            height: 1px;
+            background-color: #333;
+            margin: 30px 0;
+        }
+
+        .footer-bottom-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-heading {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .footer-menu {
+            list-style: none;
+        }
+
+        .footer-menu li { margin-bottom: 10px; }
+
+        .footer-menu a, .social-link {
+            color: #999;
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .footer-menu a:hover, .social-link:hover { color: #2c7a2c; }
+
+        .contact-info { font-size: 0.85rem; color: #999; line-height: 1.6; }
+        .contact-info strong { color: #fff; }
+        .social-links { display: flex; flex-direction: column; gap: 10px; }
+        .copyright-text { font-size: 0.8rem; color: #777; text-align: center; margin-top: 20px; }
+
+        @media (max-width: 1000px) {
+            .preloader-images {
+                top: 35%;
+                width: 15rem;
+                height: 15rem;
+            }
+            .preloader-copy {
+                width: 80%;
+            }
+            .preloader-header {
+                transform: translateY(50svh);
+            }
+            section {
+                padding: 100px 20px 60px 20px;
+            }
+            .content {
+                width: 65%;
+                padding: 20px;
+            }
+            .content .title {
+                font-size: 2em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body { font-size: 14px; }
+            section {
+                flex-direction: column;
+                padding: 100px 15px 40px 15px;
+                min-height: auto;
+            }
+            .content {
+                width: 95%;
+                max-height: none;
+                padding: 20px;
+            }
+            section .img-box {
+                position: relative;
+                right: auto;
+                width: 90%;
+                height: 250px;
+                margin: 20px auto;
+            }
+            .content .title {
+                font-size: 1.8em;
+            }
+            .footer-bottom-section {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .newsletter-form {
+                flex-direction: column;
+            }
+            .preloader-images {
+                width: 12rem;
+                height: 12rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .content .title {
+                font-size: 1.5em;
+            }
+            .content .desc {
+                font-size: 0.85em;
+            }
+            .preloader-images {
+                width: 10rem;
+                height: 10rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PRELOADER -->
+    <div class="preloader">
+        <div class="progress-bar"></div>
+        <div class="preloader-images">
+            <div class="img"><img src="assets/img/1.jpg" alt=""></div>
+            <div class="img"><img src="assets/img/A.jpg" alt=""></div>
+            <div class="img"><img src="assets/img/community3.webp" alt=""></div>
+            <div class="img"><img src="assets/img/gga.jpg" alt=""></div>
+        </div>
+        <div class="preloader-copy">
+            <p>"It's Time" — A Movement Born from Purpose</p>
+        </div>
+    </div>
+
+    <div class="preloader-header">
+        <a href="#" class="preloader-logo">
+            <img src="assets/img/logo.jpg" alt="Logo">
+        </a>
+    </div>
+
+    <!-- SIMPLE NAVBAR -->
+    <header class="simple-navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="nav-logo-img">
+                    <img src="assets/img/logo.jpg" alt="Ni-Wakati Logo" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'45\' fill=\'%232c7a2c\' stroke=\'white\' stroke-width=\'3\'/%3E%3Ctext x=\'50\' y=\'70\' font-size=\'36\' fill=\'white\' text-anchor=\'middle\' font-family=\'Barlow Condensed\'%3ENW%3C/text%3E%3C/svg%3E';">
+                </div>
+                <div class="nav-logo-text">NI-<span>WAKATI</span></div>
+            </div>
+            
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="bi bi-list"></i>
+            </div>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item dropdown">
+                    <div class="nav-link dropdown-toggle active">About <i class="bi bi-chevron-down"></i></div>
+                    <ul class="dropdown-menu">
+                        <li><a href="#story">Our Story</a></li>
+                        <li><a href="#compass">Vision & Mission</a></li>
+                        <li><a href="#principles">Core Principles</a></li>
+                        <li><a href="#team">Our Team</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="Event.html" class="nav-link">Events</a></li>
+                <li class="nav-item dropdown">
+                </li>
+                <li class="nav-item"><a href="#join" class="nav-link">Get involved</a></li>
+                <li class="nav-item"><a href="#join" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- SCROLL WIPE SECTIONS -->
+    <section id="story">
+        <div class="content">
+            <div class="title">The Ni-Wakati Story</div>
+            <div class="tagline">"It's Time" — A Movement Born from Purpose</div>
+            <div class="subtitle">Our Genesis</div>
+            <div class="desc">
+                Born from a vision to bridge Africa's sports development gap, Ni-Wakati Sports Africa emerged as a response to the untapped potential within communities across the continent. "Ni-Wakati" — Swahili for "It's Time" — reflects our urgent call to action.
+                <br><br>
+                We observed a disconnect: while Africa produces world-class athletic talent, grassroots sports infrastructure remains underdeveloped. Our founders — sports professionals, community organizers, and development experts — united around a singular mission: to build inclusive sports ecosystems that serve as catalysts for social transformation.
+                <br><br>
+                What began as local community soccer programs in Nairobi's informal settlements has evolved into a pan-African movement. Today, we partner with governments, international brands, and local communities to create sustainable sports development models that prioritize accessibility, innovation, and measurable impact.
+            </div>
+        </div>
+        <div class="img-box">
+            <img src="assets/img/1.jpg" alt="Community sports in Africa">
+        </div>
+    </section>
+
+    <section id="compass">
+        <div class="content">
+            <div class="title">Our Compass</div>
+            <div class="desc">
+                <strong>🌍 Vision</strong><br>
+                To see the African community empowered through accessible, innovative sports ecosystems that drive social cohesion, economic opportunity, and continental pride.
+                <br><br>
+                <strong>🎯 Mission</strong><br>
+                To partner with communities, institutions, and brands in developing sustainable sports programs that unlock potential, foster talent, and create lasting social impact across Africa.
+                <br><br>
+                <strong>⚡ The Ni-Wakati Difference</strong><br>
+                We don't just run events — we build ecosystems. Our approach integrates sports development with tourism, technology, and community enterprise to create self-sustaining models.
+            </div>
+        </div>
+        <div class="img-box">
+            <img src="assets/img/A.jpg" alt="Sports vision and mission">
+        </div>
+    </section>
+
+    <section id="principles">
+        <div class="content">
+            <div class="title">Our Guiding Principles</div>
+            <div class="desc">
+                <strong>🤝 Community-Led Design</strong><br>
+                We don't impose solutions — we co-create with communities. Every program begins with listening, understanding local context, and building from existing strengths.
+                <br><br>
+                <strong>🌱 Sustainable Models</strong><br>
+                Our programs are designed for longevity. We train local coaches, establish management committees, and create revenue streams to ensure continuity beyond our direct involvement.
+                <br><br>
+                <strong>🔗 Cross-Sector Integration</strong><br>
+                We connect sports with tourism, education, health, and technology. A running event becomes a tourism opportunity. A soccer program integrates health education.
+                <br><br>
+                <strong>📊 Data-Driven Impact</strong><br>
+                Every program is measured against clear social impact metrics: youth engagement, skills development, health outcomes, and community cohesion indicators.
+            </div>
+        </div>
+        <div class="img-box">
+            <img src="assets/img/community3.webp" alt="Guiding principles">
+        </div>
+    </section>
+
+    <section id="impact">
+        <div class="content">
+            <div class="title">Our Impact</div>
+            <div class="desc">
+                Since our founding, we've been committed to measurable, sustainable change across African communities. Here's what we've achieved together:
+                <br><br>
+                <strong>25,000+</strong> Youth Engaged<br>
+                <strong>12</strong> Counties in Kenya<br>
+                <strong>150+</strong> Local Coaches Trained<br>
+                <strong>85%</strong> Program Retention Rate
+                <br><br>
+                Our programs have reached over 25,000 young people across East Africa, creating pathways to education, leadership, and professional opportunities through sports.
+            </div>
+        </div>
+        <div class="img-box">
+            <img src="assets/img/community 2.webp" alt="Impact and community">
+        </div>
+    </section>
+
+    <section id="team">
+        <div class="content">
+            <div class="title">Our Architects</div>
+            <div class="desc">
+                <strong>Michael Otieno</strong><br>
+                Founder & Executive Director<br>
+                Visionary leader with 15+ years in sports development across East Africa.
+                <br><br>
+                <strong>Grace Wanjiku</strong><br>
+                Director of Programs<br>
+                Expert in community engagement and program implementation across 12 counties.
+                <br><br>
+                <strong>James Mwangi</strong><br>
+                Head of Partnerships<br>
+                Strategic partnerships architect connecting brands with communities.
+                <br><br>
+                <strong>Sarah Kimani</strong><br>
+                Community Engagement Lead<br>
+                Community organizer and youth advocate ensuring programs reflect local needs.
+            </div>
+        </div>
+        <div class="img-box">
+            <img src="assets/img/society.jpg" alt="Our team">
+        </div>
+    </section>
+
+    <section id="join">
+        <div class="content">
+            <div class="title">Join the Movement</div>
+            <div class="desc">
+                Whether you're a brand looking for meaningful partnerships, a community seeking sports development support, or an individual wanting to contribute — your journey with Ni-Wakati starts here.
+                <br><br>
+                Together, we can reimagine Africa's sports ecosystem. Together, we can build a future where every young person has access to the transformative power of sport.
+                <br><br>
+                📧 niwakatisports@gmail.com<br>
+                📞 +254 731 993 460
+            </div>
+        </div>
+        <div class="img-box">
+            <img src="assets/img/community 1.webp" alt="Join the movement">
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="pact-footer">
+        <div class="footer-container">
+            <div class="newsletter-section">
+                <h2 class="newsletter-title">SIGN UP TO RECEIVE NEWS AND UPDATES FROM US.</h2>
+                <p class="newsletter-description">
+                    Ni-Wakati Sports e-newsletter offers the latest on our efforts to build thriving, resilient and engaged communities through sport.
+                </p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address..." required>
+                    <button type="submit" class="signup-btn">Sign Up</button>
+                </form>
+            </div>
+            <hr class="footer-divider">
+            <div class="footer-bottom-section">
+                <div class="footer-column">
+                    <ul class="footer-menu">
+                        <li><a href="#story">HOME</a></li>
+                        <li><a href="#story">ABOUT</a></li>
+                        <li><a href="#join">CONTACT</a></li>
+                        <li><a href="#impact">OUR EVENTS</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-heading">CONTACT</h3>
+                    <div class="contact-info">
+                        <p><strong>Ni-Wakati Sports Africa</strong></p>
+                        <p>Nairobi, Kenya</p>
+                        <p>P: +254 731 993 460</p>
+                        <p>niwakatisports@gmail.com</p>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-heading">FIND US ON</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link">LinkedIn</a>
+                        <a href="#" class="social-link">Instagram</a>
+                        <a href="#" class="social-link">YouTube</a>
+                    </div>
+                </div>
+            </div>
+            <hr class="footer-divider">
+            <div class="copyright-section">
+                <p class="copyright-text">©2025 Ni-Wakati Sports Africa. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GSAP SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/SplitText.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
+    
+    <script>
+        // SIMPLE NAVBAR TOGGLE
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+        const toggleIcon = mobileToggle?.querySelector('i');
+        
+        function closeMenu() { 
+            navMenu.classList.remove('active'); 
+            if(toggleIcon) toggleIcon.className = 'bi bi-list'; 
+        }
+        
+        function openMenu() { 
+            navMenu.classList.add('active'); 
+            if(toggleIcon) toggleIcon.className = 'bi bi-x'; 
+        }
+        
+        if(mobileToggle && navMenu) {
+            mobileToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if(navMenu.classList.contains('active')) closeMenu();
+                else openMenu();
+            });
+            
+            document.querySelectorAll('.nav-link, .dropdown-menu a').forEach(link => {
+                link.addEventListener('click', () => { 
+                    if(window.innerWidth <= 950) closeMenu(); 
+                });
+            });
+            
+            document.addEventListener('click', (e) => {
+                if(window.innerWidth <= 950 && navMenu.classList.contains('active') && !navMenu.contains(e.target) && !mobileToggle.contains(e.target)) closeMenu();
+            });
+        }
+        
+        // Mobile dropdown accordion
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(drop => {
+            const toggleBtn = drop.querySelector('.dropdown-toggle');
+            if(toggleBtn) {
+                toggleBtn.addEventListener('click', (e) => {
+                    if(window.innerWidth <= 950) {
+                        e.preventDefault();
+                        drop.classList.toggle('active');
+                    }
+                });
+            }
+        });
+        
+        window.addEventListener('resize', () => {
+            if(window.innerWidth > 950) dropdowns.forEach(d => d.classList.remove('active'));
+        });
+        
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if(window.scrollY > 30) navbar.style.background = 'rgba(0, 0, 0, 0.96)';
+            else navbar.style.background = 'rgba(0, 0, 0, 0.85)';
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if(href === "#" || href === "#sports" || href === "#emerging") return;
+                const targetId = href.substring(1);
+                const targetElem = document.getElementById(targetId);
+                if(targetElem) {
+                    e.preventDefault();
+                    targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    if(window.innerWidth <= 950) closeMenu();
+                }
+            });
+        });
+        
+        // Newsletter subscription
+        const form = document.querySelector('.newsletter-form');
+        if(form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const emailInput = form.querySelector('input[type="email"]');
+                if(emailInput && emailInput.value) {
+                    alert(`Thank you for subscribing! ${emailInput.value}\nYou'll receive updates from Ni-Wakati Sports Africa.`);
+                    form.reset();
+                }
+            });
+        }
+        
+        // Update copyright year
+        const copyEl = document.querySelector('.copyright-text');
+        if(copyEl) copyEl.textContent = copyEl.textContent.replace('2025', new Date().getFullYear());
+        
+        // Preloader Animation
+        function initAnimation() {
+            if (typeof gsap === 'undefined') { setTimeout(initAnimation, 100); return; }
+            if (typeof CustomEase !== 'undefined') gsap.registerPlugin(CustomEase) && CustomEase.create("hop", "0.9, 0, 0.1, 1");
+            if (typeof SplitText !== 'undefined') gsap.registerPlugin(SplitText);
+            try {
+                let chars, lines;
+                if (typeof SplitText !== 'undefined') {
+                    const splitPreloaderHeader = new SplitText(".preloader-header a", { type: "chars", charsClass: "char" });
+                    const splitPreloaderCopy = new SplitText(".preloader-copy p", { type: "lines", linesClass: "line" });
+                    chars = splitPreloaderHeader ? splitPreloaderHeader.chars : null;
+                    lines = splitPreloaderCopy ? splitPreloaderCopy.lines : null;
+                }
+                if (!chars || !lines) {
+                    const preloaderHeader = document.querySelector(".preloader-header a");
+                    if (preloaderHeader) { const text = preloaderHeader.textContent || "NI-WAKATI"; preloaderHeader.innerHTML = ''; chars = []; for (let i=0;i<text.length;i++) { const span = document.createElement('span'); span.className='char'; span.textContent=text[i]===' '?'\u00A0':text[i]; preloaderHeader.appendChild(span); chars.push(span); } }
+                    const preloaderCopy = document.querySelector(".preloader-copy p");
+                    if (preloaderCopy) { const text = preloaderCopy.textContent; preloaderCopy.innerHTML = ''; const lineSpan = document.createElement('span'); lineSpan.className='line'; lineSpan.textContent=text; preloaderCopy.appendChild(lineSpan); lines = [lineSpan]; }
+                }
+                if (!chars || chars.length === 0) { gsap.to(".preloader", { clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)", duration:1.75, ease:"power3.inOut", onComplete:()=>{ gsap.to(".simple-navbar", { opacity:1, duration:0.5 }); } }); return; }
+                const preloaderImages = gsap.utils.toArray(".preloader-images .img");
+                const preloaderImagesInner = gsap.utils.toArray(".preloader-images .img img");
+                const easeName = typeof CustomEase !== 'undefined' ? "hop" : "power3.inOut";
+                const tl = gsap.timeline({ delay: 0.25 });
+                tl.to(".progress-bar", { scaleX: 1, duration: 4, ease: "power3.inOut" });
+                tl.set(".progress-bar", { transformOrigin: "right" });
+                tl.to(".progress-bar", { scaleX: 0, duration: 1, ease: "power3.in" });
+                preloaderImages.forEach((preloaderImg, idx) => { tl.to(preloaderImg, { clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", duration: 1, ease: easeName, delay: idx * 0.75 }, "-=5"); });
+                preloaderImagesInner.forEach((img, idx) => { tl.to(img, { scale: 1, duration: 1.5, ease: easeName, delay: idx * 0.75 }, "-=5.25"); });
+                tl.to(lines, { yPercent: 0, duration: 2, ease: easeName, stagger: 0.1 }, "-=5.5");
+                tl.to(chars, { yPercent: 0, duration: 1, ease: easeName, stagger: 0.025 }, "-=5");
+                tl.to(".preloader-images", { clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)", duration: 1, ease: easeName }, "-=1.5");
+                tl.to(lines, { yPercent: "-125%", duration: 2, ease: easeName, stagger: 0.1 }, "-=2");
+                tl.to(".preloader", { clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)", duration: 1.75, ease: easeName, onComplete:()=>{ gsap.to(".simple-navbar", { opacity:1, duration:0.5 }); } }, "-=0.5");
+            } catch(e) { console.warn(e); document.querySelector('.simple-navbar') && (document.querySelector('.simple-navbar').style.opacity = '1'); }
+        }
+        
+        // Hide navbar initially until preloader completes
+        document.querySelector('.simple-navbar').style.opacity = '0';
+        window.addEventListener("load", initAnimation);
+    </script>
+</body>
+</html>
