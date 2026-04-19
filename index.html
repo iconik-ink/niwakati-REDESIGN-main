@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
   <title>Ni-Wakati Sports Africa | Empowering Communities</title>
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -43,7 +43,7 @@
       color: inherit;
     }
 
-    /* ========== SIMPLE FIXED NAVBAR ========== */
+    /* ========== FIXED NAVBAR (enhanced for tall screens) ========== */
     .simple-navbar {
       position: fixed;
       top: 0;
@@ -66,16 +66,15 @@
       flex-wrap: wrap;
     }
 
-    /* Logo */
     .nav-logo {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.6rem;
     }
 
     .nav-logo-img {
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       overflow: hidden;
       background: rgba(255,255,255,0.1);
@@ -86,11 +85,6 @@
       border: 2px solid rgba(255,255,255,0.3);
     }
 
-    .nav-logo-img:hover {
-      transform: scale(1.05);
-      border-color: #2c7a2c;
-    }
-
     .nav-logo-img img {
       width: 100%;
       height: 100%;
@@ -98,7 +92,7 @@
     }
 
     .nav-logo-text {
-      font-size: 1.5rem;
+      font-size: 1.35rem;
       font-weight: 800;
       color: white;
       letter-spacing: -0.5px;
@@ -109,24 +103,19 @@
       color: #4caf50;
     }
 
-    /* Desktop Menu */
     .nav-menu {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.3rem;
       list-style: none;
-    }
-
-    .nav-item {
-      position: relative;
     }
 
     .nav-link {
       display: inline-block;
-      padding: 0.6rem 1.2rem;
+      padding: 0.5rem 1rem;
       color: #f0f0f0;
       font-weight: 500;
-      font-size: 1rem;
+      font-size: 0.9rem;
       border-radius: 40px;
       transition: all 0.25s;
       font-family: 'Poppins', sans-serif;
@@ -151,15 +140,6 @@
       cursor: pointer;
     }
 
-    .dropdown-toggle i {
-      font-size: 0.8rem;
-      transition: transform 0.2s;
-    }
-
-    .dropdown:hover .dropdown-toggle i {
-      transform: rotate(180deg);
-    }
-
     .dropdown-menu {
       position: absolute;
       top: calc(100% + 10px);
@@ -167,8 +147,8 @@
       background: rgba(20, 20, 20, 0.97);
       backdrop-filter: blur(16px);
       border-radius: 20px;
-      min-width: 220px;
-      padding: 0.7rem 0;
+      min-width: 200px;
+      padding: 0.5rem 0;
       opacity: 0;
       visibility: hidden;
       transform: translateY(-8px);
@@ -184,48 +164,31 @@
       transform: translateY(0);
     }
 
-    .dropdown-menu li {
-      list-style: none;
-    }
-
     .dropdown-menu a {
       display: block;
-      padding: 0.7rem 1.8rem;
+      padding: 0.6rem 1.5rem;
       color: #e0e0e0;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       transition: all 0.2s;
       font-weight: 500;
     }
 
-    .dropdown-menu a:hover {
-      background: #2c7a2c;
-      color: white;
-      padding-left: 2rem;
-    }
-
-    /* Mobile Toggle Button */
     .mobile-toggle {
       display: none;
       background: rgba(255,255,255,0.1);
       border: 1px solid rgba(255,255,255,0.3);
       border-radius: 50%;
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       color: white;
-      transition: all 0.2s;
     }
 
-    .mobile-toggle:hover {
-      background: #2c7a2c;
-      transform: scale(1.02);
-    }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 950px) {
+    /* ===== ENHANCED MOBILE VIEW (Nokia C31 & tall screens) ===== */
+    @media (max-width: 780px) {
       .mobile-toggle {
         display: flex;
       }
@@ -235,19 +198,20 @@
         top: 0;
         right: -100%;
         width: 80%;
-        max-width: 340px;
+        max-width: 320px;
         height: 100vh;
-        background: #0f0f0f;
-        backdrop-filter: blur(24px);
+        background: #0a0a0a;
+        backdrop-filter: blur(28px);
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
-        padding: 100px 1.5rem 2rem;
-        gap: 0.8rem;
+        padding: 100px 1.2rem 2rem;
+        gap: 0.6rem;
         transition: right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-        box-shadow: -5px 0 25px rgba(0,0,0,0.5);
+        box-shadow: -5px 0 25px rgba(0,0,0,0.6);
         border-left: 1px solid rgba(255,255,255,0.1);
         overflow-y: auto;
+        z-index: 10000;
       }
 
       .nav-menu.active {
@@ -261,12 +225,11 @@
       .nav-link {
         display: block;
         width: 100%;
-        padding: 0.9rem 1rem;
-        font-size: 1.1rem;
-        border-radius: 12px;
+        padding: 0.8rem 1rem;
+        font-size: 1rem;
+        border-radius: 14px;
       }
 
-      /* Mobile dropdown */
       .dropdown {
         width: 100%;
       }
@@ -290,37 +253,135 @@
         margin-left: 1rem;
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.3s ease;
+        transition: max-height 0.35s ease;
         border-radius: 12px;
       }
 
       .dropdown.active .dropdown-menu {
-        max-height: 300px;
+        max-height: 280px;
       }
 
       .dropdown-menu a {
         padding: 0.7rem 1rem;
-      }
-
-      .dropdown-menu a:hover {
-        padding-left: 1.5rem;
+        font-size: 0.9rem;
       }
     }
 
-    @media (max-width: 550px) {
+    /* Extra small devices like Nokia C31 (width ≤ 360px) + tall height adjustments */
+    @media (max-width: 480px) {
       .nav-container {
         padding: 0.6rem 1rem;
+      }
+      .nav-logo-img {
+        width: 44px;
+        height: 44px;
       }
       .nav-logo-text {
         font-size: 1.2rem;
       }
-      .nav-logo-img {
-        width: 50px;
-        height: 50px;
+      .mobile-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 1.4rem;
+      }
+      .hero-content h1 {
+        font-size: 2rem !important;
+        line-height: 1.2;
+      }
+      .hero-content h2 {
+        font-size: 1.4rem !important;
+      }
+      .hero-content p {
+        font-size: 0.95rem !important;
+        padding: 0 10px;
+      }
+      .cta-buttons {
+        gap: 12px;
+      }
+      .cta-button {
+        padding: 10px 22px;
+        font-size: 0.85rem;
+      }
+      .card-title h1 {
+        font-size: 2rem !important;
+      }
+      .card-description p {
+        font-size: 1rem !important;
+      }
+      .card-info p {
+        font-size: 0.7rem;
+        letter-spacing: 1px;
+      }
+      .section-title {
+        font-size: 2rem !important;
+        margin-bottom: 30px;
+      }
+      .slide-content {
+        padding: 20px;
+      }
+      .slide-content h3 {
+        font-size: 1.2rem;
+      }
+      .banner {
+        height: 320px;
+      }
+      .banner-content h3 {
+        font-size: 1.4rem;
+      }
+      .newsletter-title {
+        font-size: 1.8rem;
+      }
+      .newsletter-form {
+        flex-direction: column;
+        gap: 12px;
+      }
+      #subscriber-email {
+        width: 100%;
+        padding: 14px 20px;
+      }
+      .signup-btn {
+        width: 100%;
+        padding: 14px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      .outro h1 {
+        font-size: 2rem !important;
+        padding: 0 20px;
       }
     }
 
-    /* ========== REST OF YOUR PAGE STYLES (PRESERVED) ========== */
+    /* Tall screens optimization: ensure spacing & sticky cards work with increased height */
+    @media (min-height: 750px) and (max-width: 480px) {
+      .hero-section {
+        min-height: 95vh;
+        padding: 0 15px;
+      }
+      .card {
+        height: 100svh; 
+      }
+      .card-inner {
+        justify-content: center;
+        padding: 20px;
+      }
+      .sticky-cards .card:last-of-type {
+        margin-bottom: 0;
+      }
+      .slider-section {
+        padding: 70px 15px;
+      }
+      .banners-section {
+        padding: 70px 15px;
+      }
+      .newsletter-section {
+        margin: 40px 15px;
+        padding: 40px 20px;
+      }
+    }
+
+    /* Original large screen fallback styles preserved */
     .hero-section {
       min-height: 100vh;
       background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('assets/img/Start.jpg') center/cover no-repeat;
@@ -335,15 +396,14 @@
     .hero-content { max-width:1200px; z-index:1; }
     .hero-content h1 { font-size:4rem; font-weight:700; margin-bottom:20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); color: white; font-family: "Barlow Condensed", sans-serif; }
     .hero-content h2 { font-size:2rem; font-weight:400; margin-bottom:30px; color: #4caf50; }
-    .hero-content p { font-size:1.2rem; max-width:800px; margin:0 auto 40px; line-height:1.6; text-transform: none; }
+    .hero-content p { font-size:1.2rem; max-width:800px; margin:0 auto 40px; line-height:1.6; }
     .cta-buttons { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; }
     .cta-button { padding:15px 35px; font-size:1.1rem; font-weight:600; text-decoration:none; border-radius:50px; transition: all 0.3s ease; text-transform:uppercase; letter-spacing:1px; }
     .cta-primary { background-color: #2c7a2c; color:white; border:2px solid #2c7a2c; }
-    .cta-primary:hover { background-color: #1e5e1e; border-color: #1e5e1e; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(44,122,44,0.3); }
+    .cta-primary:hover { background-color: #1e5e1e; transform: translateY(-3px); }
     .cta-secondary { background-color:transparent; color:white; border:2px solid white; }
     .cta-secondary:hover { background-color:white; color:black; transform: translateY(-3px); }
 
-    /* Sticky cards */
     .sticky-cards { position: relative; width: 100%; background-color: #0f0f0f; }
     .card { position: sticky; width: 100%; height: 125svh; top: 0; }
     .card-inner { position: relative; width: 100%; height: 100%; background-size: cover !important; background-position: center !important; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
@@ -359,7 +419,6 @@
     .outro { height: 100svh; display: flex; align-items: center; justify-content: center; background: #f9f4eb; text-align: center; }
     .outro h1 { font-size: 4rem; color: #1e5e1e; }
 
-    /* Slider section */
     .slider-section { padding: 100px 20px; background-color: #0a0a0a; color: white; }
     .section-title { text-align: center; font-size: 2.8rem; margin-bottom: 50px; color: white; }
     .slider-container { max-width: 1200px; margin: 0 auto; overflow: hidden; border-radius: 28px; position: relative; }
@@ -371,9 +430,8 @@
     .slider-btn { background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.3); width: 50px; height: 50px; border-radius: 50%; cursor: pointer; font-size: 1.6rem; color: white; transition: 0.2s; }
     .slider-btn:hover { background: #2c7a2c; border-color: #2c7a2c; transform: scale(1.05); }
 
-    /* Banners */
     .banners-section { padding: 100px 20px; background: #000; }
-    .banner-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+    .banner-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
     .banner { position: relative; height: 380px; border-radius: 24px; overflow: hidden; transition: transform 0.3s; background-size: cover; background-position: center; }
     .banner:hover { transform: translateY(-8px); }
     .banner-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 30px; background: linear-gradient(transparent, rgba(0,0,0,0.95)); color: white; }
@@ -381,15 +439,12 @@
     .banner-cta { display: inline-block; margin-top: 12px; padding: 8px 24px; background: rgba(44,122,44,0.3); border-radius: 40px; font-weight: 600; transition: 0.2s; }
     .banner-cta:hover { background: #2c7a2c; transform: translateX(6px); }
 
-    /* Newsletter */
     .newsletter-section { text-align: center; margin: 60px auto; max-width: 1200px; padding: 50px 20px; background: #111; border-radius: 40px; }
     .newsletter-title { font-size: 2.4rem; background: linear-gradient(90deg, #2c7a2c, #6fbf6f); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 15px; }
     .newsletter-form { display: flex; gap: 15px; max-width: 550px; margin: 30px auto 0; flex-wrap: wrap; justify-content: center; }
     #subscriber-email { flex: 2; padding: 16px 25px; border: 1px solid rgba(255,255,255,0.3); background: #1a1a1a; border-radius: 60px; color: white; }
     .signup-btn { background: #2c7a2c; padding: 16px 40px; border-radius: 60px; font-weight: bold; cursor: pointer; transition: 0.2s; border: none; color: white; }
-    .signup-btn:hover { background: #1e5e1e; transform: scale(1.02); }
 
-    /* Footer */
     .pact-footer { background: #0a0a0a; padding: 70px 20px 30px; color: #ddd; border-top: 1px solid #2c7a2c40; }
     .footer-container { max-width: 1300px; margin: 0 auto; }
     .footer-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 40px; margin-bottom: 50px; }
@@ -403,12 +458,11 @@
     .social-link:hover { background: #2c7a2c; transform: translateY(-4px); }
     .footer-bottom { border-top: 1px solid #222; padding-top: 30px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
     @media (max-width: 850px) { .footer-grid { grid-template-columns: repeat(2,1fr); } }
-    @media (max-width: 550px) { .footer-grid { grid-template-columns: 1fr; } .hero-content h1 { font-size: 2.5rem; } .card-title h1 { font-size: 40px; } }
+    @media (max-width: 550px) { .footer-grid { grid-template-columns: 1fr; } .card-title h1 { font-size: 40px; } }
   </style>
 </head>
 <body>
 
-<!-- ========== SIMPLE NAVBAR WITH ORIGINAL LOGO IMAGE ========== -->
 <header class="simple-navbar" id="navbar">
   <div class="nav-container">
     <div class="nav-logo">
@@ -424,7 +478,6 @@
     
     <ul class="nav-menu" id="navMenu">
       <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
-      
       <li class="nav-item dropdown">
         <div class="nav-link dropdown-toggle">About <i class="bi bi-chevron-down"></i></div>
         <ul class="dropdown-menu">
@@ -433,9 +486,7 @@
           <li><a href="about.html#principles">Core Principles</a></li>
         </ul>
       </li>
-      
       <li class="nav-item"><a href="Event.html" class="nav-link">Events</a></li>
-      
       <li class="nav-item dropdown">
         <div class="nav-link dropdown-toggle">Stories <i class="bi bi-chevron-down"></i></div>
         <ul class="dropdown-menu">
@@ -443,7 +494,6 @@
           <li><a href="insights.html">All Stories</a></li>
         </ul>
       </li>
-      
       <li class="nav-item dropdown">
         <div class="nav-link dropdown-toggle">Get Involved <i class="bi bi-chevron-down"></i></div>
         <ul class="dropdown-menu">
@@ -455,7 +505,6 @@
   </div>
 </header>
 
-<!-- Hero Section -->
 <section id="home" class="hero-section">
   <div class="hero-content">
     <h1>Empowering African Communities</h1>
@@ -468,7 +517,6 @@
   </div>
 </section>
 
-<!-- Sticky Cards (simplified visual) -->
 <section class="sticky-cards">
   <div class="card" id="card-1"><div class="card-inner"><div class="card-info"><p>LATEST NEWS</p></div><div class="card-title"><h1>COMMUNITY</h1></div><div class="card-description"><p>Community sports initiatives reaching new heights</p></div></div></div>
   <div class="card" id="card-2"><div class="card-inner"><div class="card-info"><p>UPCOMING EVENTS</p></div><div class="card-title"><h1>EVENTS</h1></div><div class="card-description"><p>International sports tournaments across Africa</p></div></div></div>
@@ -477,7 +525,6 @@
 </section>
 <section class="outro"><h1>Join Our Movement</h1></section>
 
-<!-- Slider Section -->
 <section class="slider-section">
   <h2 class="section-title">Stories</h2>
   <div class="slider-container">
@@ -490,7 +537,6 @@
   </div>
 </section>
 
-<!-- Banners -->
 <section class="banners-section">
   <h2 class="section-title">Initiatives</h2>
   <div class="banner-grid">
@@ -500,7 +546,6 @@
   </div>
 </section>
 
-<!-- Newsletter -->
 <section class="newsletter-section">
   <h2 class="newsletter-title">Subscribe to Our Newsletter</h2>
   <p class="newsletter-description" style="color:#ccc;">Get the latest updates on programs and events.</p>
@@ -511,7 +556,6 @@
   <p id="newsletter-msg"></p>
 </section>
 
-<!-- Footer -->
 <footer class="pact-footer">
   <div class="footer-container">
     <div class="footer-grid">
@@ -528,37 +572,32 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js"></script>
 <script>
   (function(){
-    // SIMPLE NAVBAR TOGGLE
+    // Enhanced Mobile toggle for narrow & tall screens
     const mobileToggle = document.getElementById('mobileToggle');
     const navMenu = document.getElementById('navMenu');
-    const toggleIcon = mobileToggle.querySelector('i');
-    
-    function closeMenu() { navMenu.classList.remove('active'); if(toggleIcon) toggleIcon.className = 'bi bi-list'; }
-    function openMenu() { navMenu.classList.add('active'); if(toggleIcon) toggleIcon.className = 'bi bi-x'; }
-    
+    const toggleIcon = mobileToggle?.querySelector('i');
+    function closeMenu() { navMenu?.classList.remove('active'); if(toggleIcon) toggleIcon.className = 'bi bi-list'; }
+    function openMenu() { navMenu?.classList.add('active'); if(toggleIcon) toggleIcon.className = 'bi bi-x'; }
     if(mobileToggle && navMenu) {
       mobileToggle.addEventListener('click', (e) => {
         e.stopPropagation();
-        if(navMenu.classList.contains('active')) closeMenu();
-        else openMenu();
+        navMenu.classList.contains('active') ? closeMenu() : openMenu();
       });
-      
       document.querySelectorAll('.nav-link, .dropdown-menu a').forEach(link => {
-        link.addEventListener('click', () => { if(window.innerWidth <= 950) closeMenu(); });
+        link.addEventListener('click', () => { if(window.innerWidth <= 780) closeMenu(); });
       });
-      
       document.addEventListener('click', (e) => {
-        if(window.innerWidth <= 950 && navMenu.classList.contains('active') && !navMenu.contains(e.target) && !mobileToggle.contains(e.target)) closeMenu();
+        if(window.innerWidth <= 780 && navMenu.classList.contains('active') && !navMenu.contains(e.target) && !mobileToggle.contains(e.target)) closeMenu();
       });
     }
     
-    // Mobile dropdown accordion
+    // Mobile dropdown accordion (for touch)
     const dropdowns = document.querySelectorAll('.dropdown');
     dropdowns.forEach(drop => {
       const toggleBtn = drop.querySelector('.dropdown-toggle');
       if(toggleBtn) {
         toggleBtn.addEventListener('click', (e) => {
-          if(window.innerWidth <= 950) {
+          if(window.innerWidth <= 780) {
             e.preventDefault();
             drop.classList.toggle('active');
           }
@@ -566,17 +605,17 @@
       }
     });
     window.addEventListener('resize', () => {
-      if(window.innerWidth > 950) dropdowns.forEach(d => d.classList.remove('active'));
+      if(window.innerWidth > 780) dropdowns.forEach(d => d.classList.remove('active'));
+      if(window.innerWidth > 780 && navMenu?.classList.contains('active')) closeMenu();
     });
     
     // Navbar scroll effect
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
-      if(window.scrollY > 30) navbar.style.background = 'rgba(0, 0, 0, 0.96)';
-      else navbar.style.background = 'rgba(0, 0, 0, 0.85)';
+      navbar.style.background = window.scrollY > 30 ? 'rgba(0, 0, 0, 0.96)' : 'rgba(0, 0, 0, 0.85)';
     });
     
-    // Slider functionality
+    // Slider
     const slider = document.getElementById('slider');
     const slides = document.querySelectorAll('.slide');
     let current = 0;
@@ -588,7 +627,7 @@
       setInterval(() => { current = (current+1)%slides.length; updateSlider(); }, 5000);
     }
     
-    // Newsletter simulation
+    // Newsletter
     document.getElementById('newsletter-form')?.addEventListener('submit', (e) => {
       e.preventDefault();
       const email = document.getElementById('subscriber-email').value.trim();
@@ -601,7 +640,7 @@
     });
     document.getElementById('current-year').textContent = new Date().getFullYear();
     
-    // GSAP card animations
+    // GSAP + ScrollTrigger (keeping sticky card effect)
     gsap.registerPlugin(ScrollTrigger);
     const cards = gsap.utils.toArray('.card');
     cards.forEach((card, idx) => {
